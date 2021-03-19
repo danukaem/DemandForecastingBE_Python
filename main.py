@@ -8,6 +8,7 @@ from DemandForecasting import DemandForecast
 from chatBotModel import ChatBotModel
 from dataBaseDump import DataBaseDump
 from initialDataLoading import InitialFileLoader
+from tensorflow import keras
 
 app = Flask(__name__)
 CORS(app)
@@ -86,6 +87,18 @@ def generate_chat_model():
 # manually generate chat bot related models
 # demo = ChatBotModel()
 # demo.generatechatmodel()
+
+@app.route('/demandForecasting', methods=['POST'])
+def demand_forecasting():
+    request_data = request.get_json()
+    ip_address = request_data['ipAddress']
+    df = DemandForecast()
+    test_x = df.convert_data(ip_address)
+    test_x = np.unique(test_x, axis=0)
+    model_saved = keras.models.load_model('forecast_model.h5')
+    pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+    return '{}'.format(pred)
+
 
 print("GO! bot is running!")
 

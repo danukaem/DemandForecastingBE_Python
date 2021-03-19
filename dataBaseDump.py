@@ -3,11 +3,11 @@ import pandas as pd
 
 
 class DataBaseDump:
+
     def create_data_dump(self):
         cnx = mysql.connector.connect(
             user='root', password='1234', database='chatbotdb', host='127.0.0.1'
         )
-
         cursor = cnx.cursor()
 
         query = (
@@ -15,12 +15,25 @@ class DataBaseDump:
         )
 
         cursor.execute(query)
-
         res = cursor.fetchall()
-        print(res)
         csv_doc = pd.DataFrame(res, columns=['gender', 'chat_member', 'chat_message', 'item_category', 'item_discount',
                                              'order_quantity', 'item_price', 'order_total_amount', 'order_status'])
         csv_doc.to_csv('chat1.csv')
         cursor.close()
-
         cnx.close()
+
+    def get_query_data(self, sql_query):
+        cnx = mysql.connector.connect(
+            user='root', password='1234', database='chatbotdb', host='127.0.0.1'
+        )
+        cursor = cnx.cursor()
+
+        query = (
+            sql_query
+        )
+
+        cursor.execute(query)
+        res = cursor.fetchall()
+        cursor.close()
+        cnx.close()
+        return res
