@@ -50,7 +50,6 @@ class DemandForecast:
 
         hist = model.fit(train_x, train_y, epochs=30, callbacks=[keras.callbacks.EarlyStopping(patience=3)])
         model.save('forecast_model.h5', hist)
-        print('length : ', len(train_x[0]))
         predicted_data = model.predict(test_x.reshape(1, len(train_x[0])), batch_size=1)
         print(train_x[0])
         print(train_y[0])
@@ -72,7 +71,6 @@ class DemandForecast:
         words_loaded = pickle.load(open('words.pkl', 'rb'))
         bag_x = []
         for chat_row in fetched_data_message:
-            print(chat_row[0])
             bag = []
             word_list = nltk.word_tokenize(chat_row[0])
             word_list = [porter.stem(word) for word in word_list if word not in ignore_letters]
