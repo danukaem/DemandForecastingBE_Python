@@ -31,9 +31,9 @@ train_x = np.concatenate([train_x, bag_x], axis=1)
 train_y = np.array(train_y)
 test_x = train_x[0]
 model = keras.models.Sequential()
-model.add(keras.layers.Dense(1000, activation='relu', input_shape=(len(train_x[0]),)))
-model.add(keras.layers.Dense(1000, activation='relu'))
-model.add(keras.layers.Dense(1000, activation='relu'))
+model.add(keras.layers.Dense(10000, activation='relu', input_shape=(len(train_x[0]),)))
+model.add(keras.layers.Dense(8000, activation='relu'))
+model.add(keras.layers.Dense(4000, activation='relu'))
 model.add(keras.layers.Dense(1000, activation='relu'))
 model.add(keras.layers.Dense(len(train_y[0])))
 

@@ -75,7 +75,12 @@ def generate_chat_model():
     return demo.generatechatmodel()
 
 
+# manually generate chat bot related models
+# demo = ChatBotModel()
+# demo.generatechatmodel()
+
+print("GO! bot is running!")
+
 if __name__ == '__main__':
     app.run(debug=True)
 
-print("GO! bot is running!")
