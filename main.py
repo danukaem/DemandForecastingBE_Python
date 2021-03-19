@@ -1,40 +1,19 @@
 import random
-import json
-import pickle
 import numpy as np
-
 import nltk
-from nltk.stem import WordNetLemmatizer
-
-from tensorflow.keras.models import load_model
-
 from flask import Flask, jsonify, json, request
 from flask_cors import CORS
-
 from chatBotModel import ChatBotModel
 from initialDataLoading import InitialFileLoader
 
 app = Flask(__name__)
-
 CORS(app)
-
-
-# lemmatizer = WordNetLemmatizer()
-# intents = json.loads(open('intentCombined.json').read())
-#
-# words = pickle.load(open('words.pkl', 'rb'))
-# classes = pickle.load(open('classes.pkl', 'rb'))
-# model = load_model('chatbotmodel.h5')
-
-
-# model = load_model('chatbot_model.model')
 
 
 def clean_up_sentence(sentence):
     ifl = InitialFileLoader()
     sentence_words = nltk.word_tokenize(sentence)
     sentence_words = [ifl.getLemmatizer().stem(word) for word in sentence_words]
-    # sentence_words = [ifl.getLemmatizer().lemmatize(word) for word in sentence_words]
     return sentence_words
 
 
@@ -91,7 +70,7 @@ def get_chat_response():
 
 
 @app.route('/generateChatModel', methods=['GET'])
-def generateChatModel():
+def generate_chat_model():
     demo = ChatBotModel()
     return demo.generatechatmodel()
 
