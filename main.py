@@ -11,13 +11,14 @@ from tensorflow.keras.models import load_model
 from flask import Flask, jsonify, json, request
 from flask_cors import CORS
 
+from chatBotModel import ChatBotModel
+
 app = Flask(__name__)
 
 CORS(app)
 
 lemmatizer = WordNetLemmatizer()
 intents = json.loads(open('intentCombined.json').read())
-# intents = json.loads(open('intent.json').read())
 
 words = pickle.load(open('words.pkl', 'rb'))
 classes = pickle.load(open('classes.pkl', 'rb'))
@@ -80,8 +81,13 @@ def get_chat_response():
     return jsonify({"userMessage": res})
 
 
+@app.route('/generateChatModel', methods=['GET'])
+def generateChatModel():
+    demo = ChatBotModel()
+    return demo.generatechatmodel()
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
 print("GO! bot is running!")
-
