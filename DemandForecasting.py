@@ -1,18 +1,10 @@
-import random
-import json
 import pickle
 import numpy as np
 import nltk
-from nltk.stem import WordNetLemmatizer
 from nltk.stem import PorterStemmer
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Activation, Dropout
-from tensorflow.keras.optimizers import SGD
 import pandas as pd
 from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras.optimizers import SGD
 
 porter = PorterStemmer()
 ignore_letters = ['?', '!', '.', ',']
@@ -37,10 +29,9 @@ for chat_row in chat_column:
 bag_x = np.array(bag_x)
 train_x = np.concatenate([train_x, bag_x], axis=1)
 train_y = np.array(train_y)
-testx = []
-testx = train_x[0]
+test_x = train_x[0]
 model = keras.models.Sequential()
-model.add(keras.layers.Dense(10000, activation='relu', input_shape=(len(train_x[0]),)))
+model.add(keras.layers.Dense(1000, activation='relu', input_shape=(len(train_x[0]),)))
 model.add(keras.layers.Dense(1000, activation='relu'))
 model.add(keras.layers.Dense(1000, activation='relu'))
 model.add(keras.layers.Dense(1000, activation='relu'))
@@ -50,6 +41,6 @@ model.compile(optimizer='adam', loss='mean_squared_error', metrics='accuracy')
 
 model.fit(train_x, train_y, epochs=30, callbacks=[keras.callbacks.EarlyStopping(patience=3)])
 
-predicted_data = model.predict(testx.reshape(1, len(train_x[0])), batch_size=1)
+predicted_data = model.predict(test_x.reshape(1, len(train_x[0])), batch_size=1)
 print(train_y[0])
 print(predicted_data)
