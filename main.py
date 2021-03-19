@@ -3,7 +3,10 @@ import numpy as np
 import nltk
 from flask import Flask, jsonify, json, request
 from flask_cors import CORS
+
+from DemandForecasting import DemandForecast
 from chatBotModel import ChatBotModel
+from dataBaseDump import DataBaseDump
 from initialDataLoading import InitialFileLoader
 
 app = Flask(__name__)
@@ -71,8 +74,13 @@ def get_chat_response():
 
 @app.route('/generateChatModel', methods=['GET'])
 def generate_chat_model():
-    demo = ChatBotModel()
-    return demo.generatechatmodel()
+    chat_model = ChatBotModel()
+    data_dump_model = DataBaseDump()
+    data_dump_model.create_data_dump()
+    res = chat_model.generatechatmodel()
+    demand_forecast = DemandForecast()
+    demand_forecast.forecast_demand()
+    return res
 
 
 # manually generate chat bot related models
@@ -83,4 +91,3 @@ print("GO! bot is running!")
 
 if __name__ == '__main__':
     app.run(debug=True)
-
