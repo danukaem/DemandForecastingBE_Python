@@ -63,25 +63,29 @@ class DemandForecast:
             "select  cm.chat_message chat_message  from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
             "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where ci.ip_address='" + ip_address + "' ")
 
+        print('fetched_data_message', len(fetched_data_message))
         fetched_data = dt.get_query_data(
             "select   usr.gender gender,cm.chat_member chat_member  from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
             "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where ci.ip_address='" + ip_address + "' ")
 
-        fetched_data = np.array(fetched_data)
-        words_loaded = pickle.load(open('words.pkl', 'rb'))
-        bag_x = []
-        for chat_row in fetched_data_message:
-            bag = []
-            word_list = nltk.word_tokenize(chat_row[0])
-            word_list = [porter.stem(word) for word in word_list if word not in ignore_letters]
-            word_list = sorted(set(word_list))
-            for word in words_loaded:
-                bag.append(1) if porter.stem(word.lower()) in word_list else bag.append(0)
-            bag_x.append(bag)
-        bag_x = np.array(bag_x)
-        train_x = np.concatenate([fetched_data, bag_x], axis=1)
+        if len(fetched_data_message) > 0:
+            fetched_data = np.array(fetched_data)
+            words_loaded = pickle.load(open('words.pkl', 'rb'))
+            bag_x = []
+            for chat_row in fetched_data_message:
+                bag = []
+                word_list = nltk.word_tokenize(chat_row[0])
+                word_list = [porter.stem(word) for word in word_list if word not in ignore_letters]
+                word_list = sorted(set(word_list))
+                for word in words_loaded:
+                    bag.append(1) if porter.stem(word.lower()) in word_list else bag.append(0)
+                bag_x.append(bag)
+            bag_x = np.array(bag_x)
+            train_x = np.concatenate([fetched_data, bag_x], axis=1)
 
-        return train_x
+            return train_x
+        else:
+            return []
 
     def convert_data_by_user_id(self, user_id):
         ignore_letters = ['?', '!', '.', ',']
@@ -95,18 +99,22 @@ class DemandForecast:
             "select   usr.gender gender,cm.chat_member chat_member  from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
             "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where usr.user_id='" + user_id + "' ")
 
-        fetched_data = np.array(fetched_data)
-        words_loaded = pickle.load(open('words.pkl', 'rb'))
-        bag_x = []
-        for chat_row in fetched_data_message:
-            bag = []
-            word_list = nltk.word_tokenize(chat_row[0])
-            word_list = [porter.stem(word) for word in word_list if word not in ignore_letters]
-            word_list = sorted(set(word_list))
-            for word in words_loaded:
-                bag.append(1) if porter.stem(word.lower()) in word_list else bag.append(0)
-            bag_x.append(bag)
-        bag_x = np.array(bag_x)
-        train_x = np.concatenate([fetched_data, bag_x], axis=1)
+        if len(fetched_data_message)>0:
+            fetched_data = np.array(fetched_data)
+            words_loaded = pickle.load(open('words.pkl', 'rb'))
+            bag_x = []
+            for chat_row in fetched_data_message:
+                bag = []
+                word_list = nltk.word_tokenize(chat_row[0])
+                word_list = [porter.stem(word) for word in word_list if word not in ignore_letters]
+                word_list = sorted(set(word_list))
+                for word in words_loaded:
+                    bag.append(1) if porter.stem(word.lower()) in word_list else bag.append(0)
+                bag_x.append(bag)
+            bag_x = np.array(bag_x)
+            train_x = np.concatenate([fetched_data, bag_x], axis=1)
 
-        return train_x
+            return train_x
+        else:
+            return []
+

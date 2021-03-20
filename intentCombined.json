@@ -7,12 +7,22 @@
         "How are you",
         "Is anyone there?",
         "Hello",
+        "Good day",
+        "Hi there",
+        "How are you",
+        "Is anyone there?",
+        "Hey",
+        "Hola",
+        "Hello",
         "Good day"
       ],
       "responses": [
         "Hi there, how can I help?",
         "Hello, thanks for visiting",
-        "Good to see you again"
+        "Good to see you again",
+        "Hello, thanks for asking",
+        "Good to see you again",
+        "Hi there, how can I help?"
       ],
       "context_set": ""
     },
@@ -21,12 +31,15 @@
       "patterns": [
         "Bye",
         "See you later",
-        "Goodbye"
+        "Goodbye",
+        "Nice chatting to you, bye",
+        "Till next time"
       ],
       "responses": [
         "See you later, thanks for visiting",
         "Have a nice day",
-        "Bye! Come back again soon."
+        "Bye! Come back again soon.",
+        "See you!"
       ]
     },
     {
@@ -34,7 +47,9 @@
       "patterns": [
         "Thanks",
         "Thank you",
-        "That's helpful"
+        "That's helpful",
+        "Awesome, thanks",
+        "Thanks for helping me"
       ],
       "responses": [
         "Happy to help!",
@@ -47,11 +62,15 @@
       "patterns": [
         "What hours are you open?",
         "What are your hours?",
-        "When are you open?"
+        "When are you open?",
+        "Opening hours of the cafeteria?",
+        "when does the cafeteria open",
+        "office canteen opening time"
       ],
       "responses": [
         "We're open every day 9am-9pm",
-        "Our hours are 9am-9pm every day"
+        "Our hours are 9am-9pm every day",
+        "It is open from Monday-Saturday 9:00am-7:30pm"
       ]
     },
     {
@@ -64,6 +83,636 @@
       "responses": [
         "We rent Yamaha, Piaggio and Vespa mopeds",
         "We have Piaggio, Vespa and Yamaha mopeds"
+      ]
+    },
+    {
+      "tag": "Electronic items",
+      "patterns": [
+        "Which Electronic items do you have?",
+        "What kinds of Electronic items are there?",
+        "What do you rent?"
+      ],
+      "responses": [
+        "tv ,fridge, refrigerator ,smart phones, computers",
+        "television ,fridge, refrigerator ,smart phones, computers",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported computers"
+      ]
+    },
+    {
+      "tag": "MACHINERY items",
+      "patterns": [
+        "Which MACHINERY items do you have?",
+        "What kinds of MACHINERY items are there?"
+      ],
+      "responses": [
+        "cnc machine, dril machine , grinding machine",
+        "there are cnc machine, dril machine , grinding machine",
+        "all are imported machines"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN items",
+      "patterns": [
+        "Which HOME AND GARDEN items do you have?",
+        "What kinds of HOME AND GARDEN items are there?"
+      ],
+      "responses": [
+        "pan , green pan, grip ,cooker ,pruner",
+        "there are pan , green pan, grip ,cooker ,pruner",
+        "all are imported garden items"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN pruner ",
+      "patterns": [
+        "Which pruners do you have?",
+        "What kinds of pruners are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported pruners"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN pruner discount and warranty",
+      "patterns": [
+        "do you have discounts for pruners?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for pruners"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN cooker ",
+      "patterns": [
+        "Which cookers do you have?",
+        "What kinds of cookers are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported cookers"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN cooker discount and warranty",
+      "patterns": [
+        "do you have discounts for cookers?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for cookers"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN grip ",
+      "patterns": [
+        "Which grips do you have?",
+        "What kinds of grips are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported grips"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN grip discount and warranty",
+      "patterns": [
+        "do you have discounts for grips?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for grips"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN green pan ",
+      "patterns": [
+        "Which green pans do you have?",
+        "What kinds of green pans are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported green pans"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN green pan discount and warranty",
+      "patterns": [
+        "do you have discounts for green pans?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for green pans"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN pan ",
+      "patterns": [
+        "Which pans do you have?",
+        "What kinds of pans are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported pans"
+      ]
+    },
+    {
+      "tag": "HOME AND GARDEN pan discount and warranty",
+      "patterns": [
+        "do you have discounts for pans?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for pans"
+      ]
+    },
+    {
+      "tag": "BEAUTY AND PERSONAL CARE items",
+      "patterns": [
+        "Which BEAUTY AND PERSONAL items do you have?",
+        "What kinds of BEAUTY AND PERSONAL items are there?"
+      ],
+      "responses": [
+        "SINGLE BRUSH , makeup brush",
+        "there are SINGLE BRUSH , makeup brush",
+        "all are imported beauty items"
+      ]
+    },
+    {
+      "tag": "BEAUTY AND PERSONAL CARE makeup brush ",
+      "patterns": [
+        "Which makeup brushs do you have?",
+        "What kinds of makeup brushs are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported makeup brushs"
+      ]
+    },
+    {
+      "tag": "BEAUTY AND PERSONAL CARE makeup brush discount and warranty",
+      "patterns": [
+        "do you have discounts for makeup brushs?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for makeup brushs"
+      ]
+    },
+    {
+      "tag": "BEAUTY AND PERSONAL CARE SINGLE BRUSH ",
+      "patterns": [
+        "Which SINGLE BRUSHs do you have?",
+        "What kinds of SINGLE BRUSHes are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported SINGLE BRUSHes"
+      ]
+    },
+    {
+      "tag": "BEAUTY AND PERSONAL CARE SINGLE BRUSH discount and warranty",
+      "patterns": [
+        "do you have discounts for SINGLE BRUSHes?",
+        "are there warranty for SINGLE BRUSHes?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for SINGLE BRUSHs",
+        "yes , all SINGLE BRUSHs have 3 years warranty",
+        "3 years warranty for hardware and 5 years for software"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY items",
+      "patterns": [
+        "Which VEHICLE AND ACCESSORY items do you have?",
+        "What kinds of VEHICLE AND ACCESSORY items are there?",
+        "What do you rent?"
+      ],
+      "responses": [
+        "car , van, jeep ,motor bike ",
+        "there are car , van, jeep ,motor bike",
+        "all are imported vehicles"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY motor bike ",
+      "patterns": [
+        "Which motor bikes do you have?",
+        "What kinds of motor bikes are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported motor bikes"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY motor bike discount and warranty",
+      "patterns": [
+        "do you have discounts for motor bikes?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for motor bikes"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY jeep ",
+      "patterns": [
+        "Which jeeps do you have?",
+        "What kinds of jeeps are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported jeeps"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY jeep discount and warranty",
+      "patterns": [
+        "do you have discounts for jeeps?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for jeeps"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY van ",
+      "patterns": [
+        "Which vans do you have?",
+        "What kinds of vans are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported vans"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY van discount and warranty",
+      "patterns": [
+        "do you have discounts for vans?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for vans"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY car ",
+      "patterns": [
+        "Which cars do you have?",
+        "What kinds of cars are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported cars"
+      ]
+    },
+    {
+      "tag": "VEHICLE AND ACCESSORY car discount and warranty",
+      "patterns": [
+        "do you have discounts for cars?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for cars"
+      ]
+    },
+    {
+      "tag": "Electronic smart phone ",
+      "patterns": [
+        "Which smart phones do you have?",
+        "What kinds of smart phones are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported smart phones"
+      ]
+    },
+    {
+      "tag": "Electronic smart phone discount and warranty",
+      "patterns": [
+        "do you have discounts for smart phones?",
+        "are there warranty for smart phones?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for smart phones",
+        "yes , all smart phones have 3 years warranty",
+        "3 years warranty for hardware and 5 years for software"
+      ]
+    },
+    {
+      "tag": "Electronic fridge ",
+      "patterns": [
+        "Which fridges do you have?",
+        "What kinds of fridges are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported fridges"
+      ]
+    },
+    {
+      "tag": "Electronic fridge discount and warranty",
+      "patterns": [
+        "do you have discounts for fridges?",
+        "are there warranty for fridges?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for fridges",
+        "yes , all fridges have 3 years warranty",
+        "3 years warranty for hardware and 5 years for software"
+      ]
+    },
+    {
+      "tag": "Electronic television ",
+      "patterns": [
+        "Which televisions do you have?",
+        "What kinds of televisions are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung televisions",
+        "all are imported televisions"
+      ]
+    },
+    {
+      "tag": "Electronic television discount and warranty",
+      "patterns": [
+        "do you have discounts for televisions?",
+        "are there warranty for televisions?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for televisions",
+        "yes , all televisions have 3 years warranty",
+        "3 years warranty for hardware and 5 years for software"
+      ]
+    },
+    {
+      "tag": "Electronic computer ",
+      "patterns": [
+        "Which Computers do you have?",
+        "What kinds of computers are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung laptops",
+        "all are imported computers"
+      ]
+    },
+    {
+      "tag": "Electronic computer discount and warranty",
+      "patterns": [
+        "do you have discounts for computers?",
+        "are there warranty for computers?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for laptops as well as pc",
+        "yes there are lots of discounts for computers",
+        "yes , all computers have 3 years warranty",
+        "3 years warranty for hardware and 5 years for software"
+      ]
+    },
+    {
+      "tag": "Apparel",
+      "patterns": [
+        "Which Apparel items do you have?",
+        "What kinds of Apparel items are there?"
+      ],
+      "responses": [
+        "dress , shorts , T-shirt, sweater ,jacket, coat, jeans ,socks ,shorts ,tracksuit",
+        "there are dress , shorts , T-shirt, sweater ,jacket, coat, jeans ,socks ,shorts ,tracksuit",
+        "all are imported cloths"
+      ]
+    },
+    {
+      "tag": "Apparel tracksuit ",
+      "patterns": [
+        "Which tracksuit do you have?",
+        "What kinds of tracksuit are there?"
+      ],
+      "responses": [
+        "there are nice tracksuit",
+        "all are imported tracksuit"
+      ]
+    },
+    {
+      "tag": "Apparel tracksuit discount and warranty",
+      "patterns": [
+        "do you have discounts for tracksuit?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for tracksuits  ",
+        "yes there are lots of discounts for tracksuits"
+      ]
+    },
+    {
+      "tag": "Apparel short ",
+      "patterns": [
+        "Which short do you have?",
+        "What kinds of short are there?"
+      ],
+      "responses": [
+        "there are nice short",
+        "all are imported short"
+      ]
+    },
+    {
+      "tag": "Apparel short discount and warranty",
+      "patterns": [
+        "do you have discounts for short?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for shorts  ",
+        "yes there are lots of discounts for shorts"
+      ]
+    },
+    {
+      "tag": "Apparel sock ",
+      "patterns": [
+        "Which socks do you have?",
+        "What kinds of socks are there?"
+      ],
+      "responses": [
+        "there are nice socks",
+        "all are imported socks"
+      ]
+    },
+    {
+      "tag": "Apparel socks discount and warranty",
+      "patterns": [
+        "do you have discounts for socks?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for socks  ",
+        "yes there are lots of discounts for socks"
+      ]
+    },
+    {
+      "tag": "Apparel jeans ",
+      "patterns": [
+        "Which jeans do you have?",
+        "What kinds of jeans are there?"
+      ],
+      "responses": [
+        "there are nice jeanss",
+        "all are imported jeans"
+      ]
+    },
+    {
+      "tag": "Apparel jeans discount and warranty",
+      "patterns": [
+        "do you have discounts for jeanss?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for jeanss  ",
+        "yes there are lots of discounts for jeanss"
+      ]
+    },
+    {
+      "tag": "Apparel coat ",
+      "patterns": [
+        "Which coat do you have?",
+        "What kinds of coat are there?"
+      ],
+      "responses": [
+        "there are nice coats",
+        "all are imported coat"
+      ]
+    },
+    {
+      "tag": "Apparel coat discount and warranty",
+      "patterns": [
+        "do you have discounts for coats?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for coats  ",
+        "yes there are lots of discounts for coats"
+      ]
+    },
+    {
+      "tag": "Apparel jacket ",
+      "patterns": [
+        "Which jacket do you have?",
+        "What kinds of jacket are there?"
+      ],
+      "responses": [
+        "there are nice jackets",
+        "all are imported jacket"
+      ]
+    },
+    {
+      "tag": "Apparel jacket discount and warranty",
+      "patterns": [
+        "do you have discounts for jackets?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for jackets  ",
+        "yes there are lots of discounts for jackets"
+      ]
+    },
+    {
+      "tag": "Apparel dress ",
+      "patterns": [
+        "Which dress do you have?",
+        "What kinds of dress are there?"
+      ],
+      "responses": [
+        "there are nice dresses",
+        "all are imported dress"
+      ]
+    },
+    {
+      "tag": "Apparel dress discount and warranty",
+      "patterns": [
+        "do you have discounts for dresses?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for dresses  ",
+        "yes there are lots of discounts for dresses"
+      ]
+    },
+    {
+      "tag": "Apparel shorts ",
+      "patterns": [
+        "Which shorts do you have?",
+        "What kinds of shorts are there?"
+      ],
+      "responses": [
+        "there are nice shorts",
+        "all are imported shorts"
+      ]
+    },
+    {
+      "tag": "Apparel shorts discount and warranty",
+      "patterns": [
+        "do you have discounts for shorts?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for shorts  ",
+        "yes there are lots of discounts for shorts"
+      ]
+    },
+    {
+      "tag": "Apparel T-shirt ",
+      "patterns": [
+        "Which T-shirt do you have?",
+        "What kinds of T-shirt are there?"
+      ],
+      "responses": [
+        "there are nice T-shirt",
+        "all are imported T-shirt"
+      ]
+    },
+    {
+      "tag": "Apparel T-shirt discount and warranty",
+      "patterns": [
+        "do you have discounts for T-shirt?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for T-shirt  ",
+        "yes there are lots of discounts for T-shirt"
+      ]
+    },
+    {
+      "tag": "Apparel sweater ",
+      "patterns": [
+        "Which sweater do you have?",
+        "What kinds of sweater are there?"
+      ],
+      "responses": [
+        "there are nice sweater",
+        "all are imported sweater"
+      ]
+    },
+    {
+      "tag": "Apparel sweater discount and warranty",
+      "patterns": [
+        "do you have discounts for sweater?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for sweater  ",
+        "yes there are lots of discounts for sweater"
       ]
     },
     {
@@ -108,66 +757,10 @@
         "today"
       ],
       "responses": [
-        "For rentals today please call 1-800-MYMOPED",
-        "Same-day rentals please call 1-800-MYMOPED"
+        "For rentals today please call 077xxxxxxxx",
+        "Same-day rentals please call 077xxxxxxxx"
       ],
       "context_filter": "rentalday"
-    },
-    {
-      "tag": "greeting",
-      "patterns": [
-        "Hi there",
-        "How are you",
-        "Is anyone there?",
-        "Hey",
-        "Hola",
-        "Hello",
-        "Good day"
-      ],
-      "responses": [
-        "Hello, thanks for asking",
-        "Good to see you again",
-        "Hi there, how can I help?"
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
-      "tag": "goodbye",
-      "patterns": [
-        "Bye",
-        "See you later",
-        "Goodbye",
-        "Nice chatting to you, bye",
-        "Till next time"
-      ],
-      "responses": [
-        "See you!",
-        "Have a nice day",
-        "Bye! Come back again soon."
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
-      "tag": "thanks",
-      "patterns": [
-        "Thanks",
-        "Thank you",
-        "That's helpful",
-        "Awesome, thanks",
-        "Thanks for helping me"
-      ],
-      "responses": [
-        "Happy to help!",
-        "Any time!",
-        "My pleasure"
-      ],
-      "context": [
-        ""
-      ]
     },
     {
       "tag": "noanswer",
@@ -188,11 +781,14 @@
         "What you can do?",
         "What help you provide?",
         "How you can be helpful?",
-        "What support is offered"
+        "What support is offered",
+        "How you could help me?",
+        "What help you provide?"
       ],
       "responses": [
         "I can guide you through Adverse drug reaction list, Blood pressure tracking, Hospitals and Pharmacies",
-        "Offering support for Adverse drug reaction, Blood pressure, Hospitals and Pharmacies"
+        "Offering support for Adverse drug reaction, Blood pressure, Hospitals and Pharmacies",
+        "I can provide support related to following problems technical query,management related query,order related query,tracking related query,procurement query,outsourcing problem,manufacturing delay,"
       ],
       "context": [
         ""
@@ -221,18 +817,7 @@
         "Task related to blood pressure",
         "Blood pressure data entry",
         "I want to log blood pressure results",
-        "Blood pressure data management"
-      ],
-      "responses": [
-        "Navigating to Blood Pressure module"
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
-      "tag": "blood_pressure_search",
-      "patterns": [
+        "Blood pressure data management",
         "I want to search for blood pressure result history",
         "Blood pressure for patient",
         "Load patient blood pressure result",
@@ -240,6 +825,7 @@
         "Find blood pressure results by ID"
       ],
       "responses": [
+        "Navigating to Blood Pressure module",
         "Please provide Patient ID",
         "Patient ID?"
       ],
@@ -314,89 +900,6 @@
       "patterns": [],
       "responses": [
         "Loading hospital details"
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
-      "tag": "greeting",
-      "patterns": [
-        "Hi there",
-        "How are you",
-        "Is anyone there?",
-        "Hey",
-        "Hola",
-        "Hello",
-        "Good day"
-      ],
-      "responses": [
-        "Hello, thanks for asking",
-        "Good to see you again",
-        "Hi there, how can I help?"
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
-      "tag": "goodbye",
-      "patterns": [
-        "Bye",
-        "See you later",
-        "Goodbye",
-        "Nice chatting to you, bye",
-        "Till next time"
-      ],
-      "responses": [
-        "See you!",
-        "Have a nice day",
-        "Bye! Come back again soon."
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
-      "tag": "thanks",
-      "patterns": [
-        "Thanks",
-        "Thank you",
-        "That's helpful",
-        "Awesome, thanks",
-        "Thanks for helping me"
-      ],
-      "responses": [
-        "Happy to help!",
-        "Any time!",
-        "My pleasure"
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
-      "tag": "noanswer",
-      "patterns": [],
-      "responses": [
-        "Sorry, can't understand you",
-        "Please give me more info",
-        "Not sure I understand"
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
-      "tag": "options",
-      "patterns": [
-        "How you could help me?",
-        "What help you provide?",
-        "How you can be helpful?"
-      ],
-      "responses": [
-        "I can guide you through Adverse management problems, order tracking, person to be contacted and Department related queries",
-        "I can provide support related to following problems technical query,management related query,order related query,tracking related query,procurement query,outsourcing problem,manufacturing delay,"
       ],
       "context": [
         ""
@@ -916,20 +1419,6 @@
       ]
     },
     {
-      "tag": "hours",
-      "patterns": [
-        "Opening hours of the cafeteria?",
-        "when does the cafeteria open",
-        "office canteen opening time"
-      ],
-      "responses": [
-        "It is open from Monday-Saturday 9:00am-7:30pm"
-      ],
-      "context": [
-        ""
-      ]
-    },
-    {
       "tag": "cabin",
       "patterns": [
         "where is VP cabin?",
@@ -956,6 +1445,20 @@
       ],
       "responses": [
         "set up key meetings and workshop,create a shared drive for information,Hold informal sharing session"
+      ],
+      "context": [
+        ""
+      ]
+    },
+    {
+      "tag": "discount",
+      "patterns": [
+        "Is this on discount ?",
+        "can I get any discount for this item"
+      ],
+      "responses": [
+        "There’s a discount of 20% on this",
+        "yes, there is a 15% discount"
       ],
       "context": [
         ""
