@@ -84,6 +84,19 @@ def generate_chat_model():
     return res
 
 
+@app.route('/getRecommendCartItems', methods=['GET'])
+def get_recommend_cart_items():
+    query_parameters = request.args
+    user_id = query_parameters.get('userId')
+    df = DemandForecast()
+    test_x = df.convert_data_by_user_id(user_id)
+    test_x = np.unique(test_x, axis=0)
+    model_saved = keras.models.load_model('forecast_model.h5')
+    prediction = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+    prediction = json.dumps(prediction.tolist())
+    return jsonify({"forecastResults": '{}'.format(prediction)})
+
+
 # manually generate chat bot related models
 # demo = ChatBotModel()
 # demo.generatechatmodel()
@@ -93,7 +106,7 @@ def demand_forecasting():
     request_data = request.get_json()
     ip_address = request_data['ipAddress']
     df = DemandForecast()
-    test_x = df.convert_data(ip_address)
+    test_x = df.convert_data_by_ip_address(ip_address)
     test_x = np.unique(test_x, axis=0)
     model_saved = keras.models.load_model('forecast_model.h5')
     pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
