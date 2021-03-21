@@ -33,9 +33,9 @@ class DemandForecast:
                 bag.append(1) if porter.stem(word.lower()) in word_list else bag.append(0)
             bag_x.append(bag)
         bag_x = np.array(bag_x)
-        train_x = np.concatenate([train_x, bag_x], axis=1)
+        train_x = np.concatenate([train_x, bag_x], axis=1).astype('int32')
 
-        train_y = np.array(train_y)
+        train_y = np.array(train_y).astype('int32')
 
         test_x = train_x[0]
 
@@ -48,7 +48,7 @@ class DemandForecast:
 
         model.compile(optimizer='adam', loss='mean_squared_error', metrics='accuracy')
 
-        hist = model.fit(train_x, train_y, epochs=30, callbacks=[keras.callbacks.EarlyStopping(patience=3)])
+        hist = model.fit(train_x, train_y, epochs=200,batch_size=5,  callbacks=[keras.callbacks.EarlyStopping(patience=3)])
         model.save('forecast_model.h5', hist)
         predicted_data = model.predict(test_x.reshape(1, len(train_x[0])), batch_size=1)
         print(train_x[0])
@@ -99,7 +99,7 @@ class DemandForecast:
             "select   usr.gender gender,cm.chat_member chat_member  from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
             "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where usr.user_id='" + user_id + "' ")
 
-        if len(fetched_data_message)>0:
+        if len(fetched_data_message) > 0:
             fetched_data = np.array(fetched_data)
             words_loaded = pickle.load(open('words.pkl', 'rb'))
             bag_x = []
@@ -117,4 +117,3 @@ class DemandForecast:
             return train_x
         else:
             return []
-
