@@ -70,7 +70,7 @@ def get_chat_response():
     res = get_response(ints, ifl.getIntents())
     print(res)
 
-    return jsonify({"userMessage": res})
+    return jsonify({"robotMessage": res})
 
 
 @app.route('/generateChatModel', methods=['GET'])
@@ -80,7 +80,13 @@ def generate_chat_model():
     data_dump_model.create_data_dump()
     res = chat_model.generatechatmodel()
     demand_forecast = DemandForecast()
-    demand_forecast.forecast_demand()
+    demand_forecast.forecast_demand_model()
+    demand_forecast.forecast_item_category_demand_model()
+    demand_forecast.forecast_item_price_demand_model()
+    demand_forecast.forecast_item_discount_demand_model()
+    demand_forecast.forecast_order_quantity_demand_model()
+    demand_forecast.forecast_order_total_amount_demand_model()
+    demand_forecast.forecast_order_status_demand_model()
     return res
 
 
@@ -90,11 +96,12 @@ def get_recommend_cart_items():
     user_id = query_parameters.get('userId')
     df = DemandForecast()
     test_x = df.convert_data_by_user_id(user_id)
-    if len(test_x)>0:
+    if len(test_x) > 0:
         test_x = np.unique(test_x, axis=0)
         model_saved = keras.models.load_model('forecast_model.h5')
         prediction = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
         prediction = json.dumps(prediction.tolist())
+        print(prediction)
         return jsonify({"forecastResults": '{}'.format(prediction)})
     else:
         return 'no data'
@@ -104,18 +111,131 @@ def get_recommend_cart_items():
 # demo = ChatBotModel()
 # demo.generatechatmodel()
 
-@app.route('/demandForecasting', methods=['POST'])
+@app.route('/demandForecasting', methods=['GET'])
 def demand_forecasting():
-    request_data = request.get_json()
-    ip_address = request_data['ipAddress']
+    request_data = request.args
+    ip_address = request_data.get('ipAddress')
     df = DemandForecast()
     test_x = df.convert_data_by_ip_address(ip_address)
 
-    if len(test_x)>0:
+    if len(test_x) > 0:
         test_x = np.unique(test_x, axis=0)
-        model_saved = keras.models.load_model('forecast_model.h5')
+        model_saved = keras.models.load_model('forecast_demand_model.h5')
         pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
-        return '{}'.format(pred)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return 'no data'
+
+
+@app.route('/itemCategoryDemandForecastingByIpAddress', methods=['GET'])
+def item_category_demand_forecasting_ipaddress():
+    request_data = request.args
+    ip_address = request_data.get('ipAddress')
+    df = DemandForecast()
+    test_x = df.convert_data_by_ip_address(ip_address)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_item_category_demand_model.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return 'no data'
+
+
+@app.route('/itemCategoryDemandForecastingByUserId', methods=['GET'])
+def item_category_demand_forecasting_by_userid():
+    request_data = request.args
+    user_id = request_data.get('userId')
+    df = DemandForecast()
+    test_x = df.convert_data_by_user_id(user_id)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_item_category_demand_model.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        print(pred)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return 'no data'
+
+
+@app.route('/itemDiscountDemandForecasting', methods=['GET'])
+def item_discount_demand_forecasting():
+    request_data = request.args
+    ip_address = request_data.get('ipAddress')
+    df = DemandForecast()
+    test_x = df.convert_data_by_ip_address(ip_address)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_item_discount_demand_model.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return 'no data'
+
+
+@app.route('/orderQuantityDemandForecasting', methods=['GET'])
+def order_quantity_demand_forecasting():
+    request_data = request.args
+    ip_address = request_data.get('ipAddress')
+    df = DemandForecast()
+    test_x = df.convert_data_by_ip_address(ip_address)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_order_quantity_demand_model.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return 'no data'
+
+
+@app.route('/itemPriceDemandForecasting', methods=['GET'])
+def item_price_demand_forecasting():
+    request_data = request.args
+    ip_address = request_data.get('ipAddress')
+    df = DemandForecast()
+    test_x = df.convert_data_by_ip_address(ip_address)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_item_price_demand_model.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return 'no data'
+
+
+@app.route('/orderTotalDemandForecasting', methods=['GET'])
+def order_total_demand_forecasting():
+    request_data = request.args
+    ip_address = request_data.get('ipAddress')
+    df = DemandForecast()
+    test_x = df.convert_data_by_ip_address(ip_address)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_order_total_amount_demand_model.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return 'no data'
+
+
+@app.route('/orderStatusDemandForecasting', methods=['GET'])
+def order_status_demand_forecasting():
+    request_data = request.args
+    ip_address = request_data.get('ipAddress')
+    df = DemandForecast()
+    test_x = df.convert_data_by_ip_address(ip_address)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_order_status_demand_model.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        return jsonify({"forecastResults": '{}'.format(pred)})
     else:
         return 'no data'
 
