@@ -78,10 +78,12 @@ def generate_chat_model():
     chat_model = ChatBotModel()
     data_dump_model = DataBaseDump()
     data_dump_model.create_data_dump()
+    data_dump_model.create_data_dump_ip_address()
     res = chat_model.generatechatmodel()
     demand_forecast = DemandForecast()
     demand_forecast.forecast_demand_model()
     demand_forecast.forecast_item_category_demand_model()
+    demand_forecast.forecast_item_category_demand_model_without_user_id()
     demand_forecast.forecast_item_price_demand_model()
     demand_forecast.forecast_item_discount_demand_model()
     demand_forecast.forecast_order_quantity_demand_model()
@@ -136,11 +138,11 @@ def item_category_demand_forecasting_ipaddress():
 
     if len(test_x) > 0:
         test_x = np.unique(test_x, axis=0)
-        model_saved = keras.models.load_model('forecast_item_category_demand_model.h5')
+        model_saved = keras.models.load_model('forecast_item_category_demand_model_without_user_id.h5')
         pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
         return jsonify({"forecastResults": '{}'.format(pred)})
     else:
-        return 'no data'
+        return jsonify({"forecastResults": '{}'.format('')})
 
 
 @app.route('/itemCategoryDemandForecastingByUserId', methods=['GET'])
@@ -149,6 +151,39 @@ def item_category_demand_forecasting_by_userid():
     user_id = request_data.get('userId')
     df = DemandForecast()
     test_x = df.convert_data_by_user_id(user_id)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_item_category_demand_model.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        print(pred)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return 'no data'
+
+
+@app.route('/itemCategoryDemandForecastingByIpAddressChat', methods=['GET'])
+def item_category_demand_forecasting_ipaddress_chat():
+    request_data = request.args
+    ip_address = request_data.get('ipAddress')
+    df = DemandForecast()
+    test_x = df.convert_data_by_ip_address_chat(ip_address)
+
+    if len(test_x) > 0:
+        test_x = np.unique(test_x, axis=0)
+        model_saved = keras.models.load_model('forecast_item_category_demand_model_without_user_id.h5')
+        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
+        return jsonify({"forecastResults": '{}'.format(pred)})
+    else:
+        return jsonify({"forecastResults": '{}'.format('')})
+
+
+@app.route('/itemCategoryDemandForecastingByUserIdChat', methods=['GET'])
+def item_category_demand_forecasting_by_userid_chat():
+    request_data = request.args
+    user_id = request_data.get('userId')
+    df = DemandForecast()
+    test_x = df.convert_data_by_user_id_chat(user_id)
 
     if len(test_x) > 0:
         test_x = np.unique(test_x, axis=0)
