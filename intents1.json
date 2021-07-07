@@ -27,6 +27,24 @@
       "context_set": ""
     },
     {
+      "tag": "Food",
+      "patterns": [
+        "Food",
+        "which foods are there ?",
+        "how much this food ?",
+        "are there chainees noodles ? "
+
+      ],
+      "responses": [
+        "Hi what are looking for ?",
+        "noodles , breads, buns, cakes ,etc",
+        "please look this price list in the site"
+
+
+      ],
+      "context_set": ""
+    },
+    {
       "tag": "goodbye",
       "patterns": [
         "Bye",
