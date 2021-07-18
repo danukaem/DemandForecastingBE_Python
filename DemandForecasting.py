@@ -58,6 +58,7 @@ class DemandForecast:
         print(train_x[1])
         print(train_y[1])
         print(predicted_data)
+        #
 
         # loss_train = hist.history['train_loss']
         # loss_val = hist.history['val_loss']
