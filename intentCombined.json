@@ -68,7 +68,7 @@
       "responses": [
         "I can guide you ",
         "Offering support",
-        "I can provide support related to following problems technical query,management related query,order related query,tracking related query,procurement query,outsourcing problem,manufacturing delay,"
+        "I can provide support related to following problems technical query,management related query,order related query,tracking related query,procurement query,outsourcing problem"
       ],
       "context": [
         ""
@@ -79,22 +79,19 @@
       "patterns": [
         "Are you open today?",
         "When do you open today?",
-        "What are your hours today?"
-      ],
-      "responses": [
-        "We're open every day from 9am-9pm",
-        "Our hours are 9am-9pm every day"
-      ]
-    },
-    {
-      "tag": "hours",
-      "patterns": [
+        "What are your hours today?",
+        "open ?",
+        "open today ?",
         "What hours are you open?",
         "What are your hours?",
         "When are you open?",
         "Opening hours of the stores?"
       ],
       "responses": [
+        "We're open every day from 9am to 9pm",
+        "Our open hours are 9am-9pm every day",
+        "Our open hours are 9am-9pm",
+        "9am-9pm",
         "We're open every day 9am-9pm",
         "Our hours are 9am-9pm every day",
         "It is open from Monday-Saturday 9:00am-7:30pm"
@@ -104,85 +101,108 @@
       "tag": "Electronic",
       "patterns": [
         "Which Electronic items do you have?",
-        "What kinds of Electronic items are there?"
+        "What kinds of Electronic items are there?",
+        "are there any electronic items",
+        "are there any electronic products"
       ],
       "responses": [
         "tv ,fridge, refrigerator ,smart phones, computers",
         "television ,fridge, refrigerator ,smart phones, computers",
         "there are Hp , Dell , Acer ,Samsung products",
-        "all are imported products"
+        "all are imported products",
+        "yes there are many electronic products such as tv ,fridge, refrigerator ,smart phones, computers"
       ]
     },
     {
       "tag": "MACHINERY",
       "patterns": [
-        "Which MACHINERY items do you have?",
-        "What kinds of MACHINERY items are there?"
+        "Which machinery items do you have?",
+        "What kinds of machinery items are there?",
+        "are there any machinery items",
+        "are there any machinery products"
       ],
       "responses": [
         "cnc machine, drill machine , grinding machine",
         "there are cnc machine, drill machine , grinding machine",
-        "all are imported machines"
+        "all are imported machines",
+        "yes there are many machines products such as cnc machine, drill machine , grinding machine"
       ]
     },
     {
       "tag": "HOME AND GARDEN",
       "patterns": [
-        "Which HOME AND GARDEN items do you have?",
-        "What kinds of HOME AND GARDEN items are there?"
+        "Which home and garden items do you have?",
+        "What kinds of home and garden items are there?",
+        "are there any home and garden items",
+        "are there any home and garden products"
       ],
       "responses": [
         "pan , green pan, grip ,cooker ,pruner",
         "there are pan , green pan, grip ,cooker ,pruner",
-        "all are imported garden items"
+        "all are imported home and garden items",
+        "yes there are many home and garden products such as pan , green pan, grip ,cooker ,pruner"
       ]
     },
     {
       "tag": "BEAUTY AND PERSONAL CARE",
       "patterns": [
-        "Which BEAUTY AND PERSONAL items do you have?",
-        "What kinds of BEAUTY AND PERSONAL items are there?"
+        "Which beauty and personal care items do you have?",
+        "What kinds of beauty and personal care items are there?",
+        "are there any beauty and personal care items ?",
+        "are there any beauty and personal care products ?"
       ],
       "responses": [
         "SINGLE BRUSH , makeup brush",
         "there are SINGLE BRUSH , makeup brush",
-        "all are imported beauty items"
+        "all are imported beauty items",
+        "yes there are many beauty and personal care products such as SINGLE BRUSH , makeup brush"
       ]
     },
     {
       "tag": "VEHICLE AND ACCESSORY",
       "patterns": [
-        "Which VEHICLE AND ACCESSORY items do you have?",
-        "What kinds of VEHICLE AND ACCESSORY items are there?",
-        "What do you rent?"
+        "Which vehicle and accessory items do you have?",
+        "What kinds of vehicle and accessory items are there?",
+        "What do you rent vehicle and accessory?",
+        "are there any vehicle and accessory items",
+        "are there any vehicle and accessory products"
       ],
       "responses": [
         "car , van, jeep ,motor bike ",
         "there are car , van, jeep ,motor bike",
-        "all are imported vehicles"
+        "all are imported vehicles",
+        "all are imported vehicle and accessory items",
+        "yes there are many vehicle and accessory products such as car , van, jeep ,motor bike"
       ]
     },
     {
       "tag": "APPAREL",
       "patterns": [
         "Which Apparel items do you have?",
-        "What kinds of Apparel items are there?"
+        "What kinds of Apparel items are there?",
+        "are there any Apparel items",
+        "are there any Apparel products"
       ],
       "responses": [
         "dress , shorts , T-shirt, sweater ,jacket, coat, jeans ,socks ,shorts ,tracksuit",
         "there are dress , shorts , T-shirt, sweater ,jacket, coat, jeans ,socks ,shorts ,tracksuit",
-        "all are imported cloths"
+        "all are imported cloths",
+        "all are imported Apparel items",
+        "yes there are many Apparel products such as dress , shorts , T-shirt, sweater ,jacket, coat, jeans ,socks ,shorts ,tracksuit"
       ]
     },
     {
       "tag": "FOOD",
       "patterns": [
-        "Which FOOD items do you have?",
-        "What kinds of FOOD items are there?"
+        "Which food items do you have?",
+        "What kinds of food items are there?",
+        "are there any food items ?",
+        "are there any food products ?"
       ],
       "responses": [
         "Breads , buns, pizza ,Noodles, fruits, rice, sugar , etc.",
-        "there are Breads , buns, pizza ,Noodles, fruits, rice, sugar , etc."
+        "there are Breads , buns, pizza ,Noodles, fruits, rice, sugar , etc.",
+        "yes there are many food products such as SINGLE BRUSH , makeup brush"
       ]
     },
     {
