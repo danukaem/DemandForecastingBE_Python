@@ -251,6 +251,17 @@
       ]
     },
     {
+      "tag": "school bag",
+      "patterns": [
+        "Which school bags do you have?",
+        "What kinds of school bags are there?"
+      ],
+      "responses": [
+        "We sell Yamaha, Piaggio and Vespa school bags",
+        "We have Piaggio, Vespa and Yamaha school bags"
+      ]
+    },
+    {
       "tag": "cooker discount and warranty",
       "patterns": [
         "do you have discounts for cookers?"
@@ -497,6 +508,29 @@
       ]
     },
     {
+      "tag": "washing machine",
+      "patterns": [
+        "Which washing machines do you have?",
+        "What kinds of washing machines are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung washing machines",
+        "all are imported washing machines"
+      ]
+    },
+    {
+      "tag": "washing machine discount and warranty",
+      "patterns": [
+        "do you have discounts for washing machines?",
+        "are there warranty for washing machines?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for washing machines",
+        "yes , all washing machines have 3 years warranty"
+      ]
+    },
+    {
       "tag": "television ",
       "patterns": [
         "Which televisions do you have?",
@@ -532,6 +566,30 @@
       ]
     },
     {
+      "tag": "head phone ",
+      "patterns": [
+        "Which head phones do you have?",
+        "What kinds of head phones are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung head phones",
+        "all are imported head phones"
+      ]
+    },
+    {
+      "tag": "monitor",
+      "patterns": [
+        "Which monitors do you have?",
+        "What kinds of monitors are there?"
+      ],
+      "responses": [
+        "Hp , Dell , Acer ,Samsung , etc",
+        "there are Hp , Dell , Acer ,Samsung monitors",
+        "all are imported head monitors"
+      ]
+    },
+    {
       "tag": "computer discount and warranty",
       "patterns": [
         "do you have discounts for computers?",
@@ -561,26 +619,6 @@
       ],
       "responses": [
         "yes there are lots of discounts for tracksuits"
-      ]
-    },
-    {
-      "tag": "short ",
-      "patterns": [
-        "Which short do you have?",
-        "What kinds of short are there?"
-      ],
-      "responses": [
-        "there are nice short",
-        "all are imported short"
-      ]
-    },
-    {
-      "tag": "short discount and warranty",
-      "patterns": [
-        "do you have discounts for short?"
-      ],
-      "responses": [
-        "yes there are lots of discounts for shorts"
       ]
     },
     {
@@ -684,6 +722,26 @@
       ]
     },
     {
+      "tag": "frock",
+      "patterns": [
+        "Which frocks do you have?",
+        "What kinds of frocks are there?"
+      ],
+      "responses": [
+        "there are nice frocks",
+        "all are imported frocks"
+      ]
+    },
+    {
+      "tag": "frock discount and warranty",
+      "patterns": [
+        "do you have discounts for frocks?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for frocks"
+      ]
+    },
+    {
       "tag": "shorts ",
       "patterns": [
         "Which shorts do you have?",
@@ -741,6 +799,266 @@
       ],
       "responses": [
         "yes there are lots of discounts for sweater"
+      ]
+    },
+    {
+      "tag": "face cream ",
+      "patterns": [
+        "Which face creams do you have?",
+        "What kinds of face creams are there?"
+      ],
+      "responses": [
+        "there are good face creams",
+        "all are imported face creams"
+      ]
+    },
+    {
+      "tag": "face cream discount and warranty",
+      "patterns": [
+        "do you have discounts for face creams?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for face creams"
+      ]
+    },
+    {
+      "tag": "hair dryer ",
+      "patterns": [
+        "Which hair dryers do you have?",
+        "What kinds of hair dryers are there?"
+      ],
+      "responses": [
+        "there are nice hair dryers",
+        "all are imported hair dryers"
+      ]
+    },
+    {
+      "tag": "hair dryer discount and warranty",
+      "patterns": [
+        "do you have discounts for hair dryers?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for hair dryers"
+      ]
+    },
+    {
+      "tag": "comb ",
+      "patterns": [
+        "Which combs do you have?",
+        "What kinds of combs are there?"
+      ],
+      "responses": [
+        "there are nice combs",
+        "all are imported combs"
+      ]
+    },
+    {
+      "tag": "comb discount and warranty",
+      "patterns": [
+        "do you have discounts for combs?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for combs"
+      ]
+    },
+    {
+      "tag": "bun ",
+      "patterns": [
+        "Which buns do you have?",
+        "What kinds of buns are there?"
+      ],
+      "responses": [
+        "there are taste buns",
+        "all are home made buns"
+      ]
+    },
+    {
+      "tag": "bun discount and warranty",
+      "patterns": [
+        "do you have discounts for buns?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for buns"
+      ]
+    },
+    {
+      "tag": "bread ",
+      "patterns": [
+        "Which breads do you have?",
+        "What kinds of breads are there?"
+      ],
+      "responses": [
+        "there are taste bread",
+        "all are home made bread"
+      ]
+    },
+    {
+      "tag": "bread discount and warranty",
+      "patterns": [
+        "do you have discounts for bread?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for bread"
+      ]
+    },
+    {
+      "tag": "noodles ",
+      "patterns": [
+        "Which noodles do you have?",
+        "What kinds of noodles are there?"
+      ],
+      "responses": [
+        "there are taste noodles",
+        "all are home made noodles"
+      ]
+    },
+    {
+      "tag": "noodles discount and warranty",
+      "patterns": [
+        "do you have discounts for noodles?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for noodles"
+      ]
+    },
+    {
+      "tag": "pizza  ",
+      "patterns": [
+        "Which pizza  do you have?",
+        "What kinds of pizza  are there?"
+      ],
+      "responses": [
+        "there are taste pizza ",
+        "all are home made pizza "
+      ]
+    },
+    {
+      "tag": "pizza  discount and warranty",
+      "patterns": [
+        "do you have discounts for pizza ?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for pizza "
+      ]
+    },
+    {
+      "tag": "fruits  ",
+      "patterns": [
+        "Which fruits  do you have?",
+        "What kinds of fruits  are there?"
+      ],
+      "responses": [
+        "there are fresh fruits ",
+        "all are home made fruits "
+      ]
+    },
+    {
+      "tag": "fruits  discount and warranty",
+      "patterns": [
+        "do you have discounts for fruits ?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for fruits "
+      ]
+    },
+    {
+      "tag": "rice  ",
+      "patterns": [
+        "Which rice  do you have?",
+        "What kinds of rice  are there?"
+      ],
+      "responses": [
+        "there are good rice ",
+        "all are sri lankan rice "
+      ]
+    },
+    {
+      "tag": "rice discount and warranty",
+      "patterns": [
+        "do you have discounts for rice ?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for rice "
+      ]
+    },
+    {
+      "tag": "sugar  ",
+      "patterns": [
+        "Which sugar  do you have?",
+        "What kinds of sugar  are there?"
+      ],
+      "responses": [
+        "there are good sugar ",
+        "all are sri lankan sugar "
+      ]
+    },
+    {
+      "tag": "sugar discount and warranty",
+      "patterns": [
+        "do you have discounts for sugar ?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for sugar "
+      ]
+    },
+    {
+      "tag": "cnc machine  ",
+      "patterns": [
+        "Which cnc machine  do you have?",
+        "What kinds of cnc machine  are there?"
+      ],
+      "responses": [
+        "there are good cnc machine ",
+        "all are imported cnc machine "
+      ]
+    },
+    {
+      "tag": "cnc machine discount and warranty",
+      "patterns": [
+        "do you have discounts for cnc machine ?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for cnc machine "
+      ]
+    },
+    {
+      "tag": "drill machine",
+      "patterns": [
+        "Which drill machine  do you have?",
+        "What kinds of drill machine  are there?"
+      ],
+      "responses": [
+        "there are good drill machine ",
+        "all are imported drill machine "
+      ]
+    },
+    {
+      "tag": "drill machine discount and warranty",
+      "patterns": [
+        "do you have discounts for drill machine ?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for drill machine "
+      ]
+    },
+    {
+      "tag": "grinding  machine",
+      "patterns": [
+        "Which grinding  machine  do you have?",
+        "What kinds of grinding  machine  are there?"
+      ],
+      "responses": [
+        "there are good grinding  machine ",
+        "all are imported grinding  machine "
+      ]
+    },
+    {
+      "tag": "grinding  machine discount and warranty",
+      "patterns": [
+        "do you have discounts for grinding  machine ?"
+      ],
+      "responses": [
+        "yes there are lots of discounts for grinding  machine "
       ]
     },
     {

@@ -23,7 +23,7 @@ class DemandForecast:
         words_loaded = pickle.load(open('words.pkl', 'rb'))
         train_y = chat_csv[
             {'item_category', 'item_discount', 'order_quantity', 'item_price', 'order_total_amount', 'order_status'}]
-        train_x = chat_csv[{'gender', 'chat_member'}]
+        train_x = chat_csv[{'gender', 'chat_member', 'age'}]
 
         bag_x = []
         classes = pickle.load(open('classes.pkl', 'rb'))
@@ -82,7 +82,7 @@ class DemandForecast:
         #     {'item_category', 'item_discount', 'order_quantity', 'item_price', 'order_total_amount', 'order_status'}]
         train_y = chat_csv[
             {'item_category'}]
-        train_x = chat_csv[{'gender', 'chat_member'}]
+        train_x = chat_csv[{'gender', 'chat_member', 'age'}]
 
         bag_x = []
         classes = pickle.load(open('classes.pkl', 'rb'))
@@ -102,12 +102,12 @@ class DemandForecast:
         test_x = train_x[0]
 
         batch_size = 5
-        number_of_epochs = 500
+        number_of_epochs = 200
         model = keras.models.Sequential()
-        model.add(keras.layers.Dense(256, activation='relu', input_shape=(len(train_x[0]),)))
-        model.add(keras.layers.Dense(64, activation='relu'))
-        # model.add(keras.layers.Dense(1000, activation='relu'))
-        # model.add(keras.layers.Dense(1000, activation='relu'))
+        model.add(keras.layers.Dense(512, activation='relu', input_shape=(len(train_x[0]),)))
+        # model.add(keras.layers.Dense(1024, activation='relu'))
+        # model.add(keras.layers.Dense(64, activation='relu'))
+        model.add(keras.layers.Dense(1024, activation='relu'))
         model.add(keras.layers.Dense(len(train_y[0]), activation='relu'))
 
         model.compile(optimizer='adam', loss='mean_squared_error', metrics='accuracy')
@@ -167,11 +167,11 @@ class DemandForecast:
         test_x = train_x[0]
 
         batch_size = 5
-        number_of_epochs = 500
+        number_of_epochs = 100
         model = keras.models.Sequential()
         model.add(keras.layers.Dense(256, activation='relu', input_shape=(len(train_x[0]),)))
-        model.add(keras.layers.Dense(64, activation='relu'))
-        # model.add(keras.layers.Dense(1000, activation='relu'))
+        # model.add(keras.layers.Dense(64, activation='relu'))
+        model.add(keras.layers.Dense(1000, activation='relu'))
         # model.add(keras.layers.Dense(1000, activation='relu'))
         model.add(keras.layers.Dense(len(train_y[0]), activation='relu'))
 
@@ -212,7 +212,7 @@ class DemandForecast:
         #     {'item_category', 'item_discount', 'order_quantity', 'item_price', 'order_total_amount', 'order_status'}]
         train_y = chat_csv[
             {'item_discount'}]
-        train_x = chat_csv[{'gender', 'chat_member'}]
+        train_x = chat_csv[{'gender', 'chat_member', 'age'}]
 
         bag_x = []
         classes = pickle.load(open('classes.pkl', 'rb'))
@@ -272,7 +272,7 @@ class DemandForecast:
         #     {'item_category', 'item_discount', 'order_quantity', 'item_price', 'order_total_amount', 'order_status'}]
         train_y = chat_csv[
             {'order_quantity'}]
-        train_x = chat_csv[{'gender', 'chat_member'}]
+        train_x = chat_csv[{'gender', 'chat_member', 'age'}]
 
         bag_x = []
         classes = pickle.load(open('classes.pkl', 'rb'))
@@ -335,7 +335,7 @@ class DemandForecast:
         #     {'item_category', 'item_discount', 'order_quantity', 'item_price', 'order_total_amount', 'order_status'}]
         train_y = chat_csv[
             {'item_price'}]
-        train_x = chat_csv[{'gender', 'chat_member'}]
+        train_x = chat_csv[{'gender', 'chat_member', 'age'}]
 
         bag_x = []
         classes = pickle.load(open('classes.pkl', 'rb'))
@@ -395,7 +395,7 @@ class DemandForecast:
         #     {'item_category', 'item_discount', 'order_quantity', 'item_price', 'order_total_amount', 'order_status'}]
         train_y = chat_csv[
             {'order_total_amount'}]
-        train_x = chat_csv[{'gender', 'chat_member'}]
+        train_x = chat_csv[{'gender', 'chat_member', 'age'}]
 
         bag_x = []
         classes = pickle.load(open('classes.pkl', 'rb'))
@@ -455,7 +455,7 @@ class DemandForecast:
         #     {'item_category', 'item_discount', 'order_quantity', 'item_price', 'order_total_amount', 'order_status'}]
         train_y = chat_csv[
             {'order_status'}]
-        train_x = chat_csv[{'gender', 'chat_member'}]
+        train_x = chat_csv[{'gender', 'chat_member', 'age'}]
 
         bag_x = []
         classes = pickle.load(open('classes.pkl', 'rb'))
@@ -573,7 +573,7 @@ class DemandForecast:
             "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where  cm.chat_member=1 and usr.user_id='" + user_id + "' ")
 
         fetched_data = dt.get_query_data(
-            "select   usr.gender gender,cm.chat_member chat_member  from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
+            "select   usr.gender gender,cm.chat_member chat_member ,usr.age age from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
             "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where cm.chat_member=1 and  usr.user_id='" + user_id + "' ")
 
         if len(fetched_data_message) > 0 and len(fetched_data) > 0:
@@ -603,7 +603,7 @@ class DemandForecast:
             "select cm.chat_message from chat_message cm where cm.chat_member=1 and cm.user_id='" + user_id + "' order by cm.chat_id desc limit 1")
 
         fetched_data = dt.get_query_data(
-            "select   usr.gender gender,cm.chat_member chat_member  from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
+            "select   usr.gender gender,cm.chat_member chat_member ,usr.age age from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
             "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where cm.chat_member=1 and usr.user_id='" + user_id + "'   order by cm.chat_id desc limit 1 ")
 
         if len(fetched_data_message) > 0 and len(fetched_data) > 0:
