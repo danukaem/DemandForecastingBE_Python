@@ -6,7 +6,7 @@ class DataBaseDump:
 
     def create_data_dump(self):
         cnx = mysql.connector.connect(
-            user='root', password='1234', database='chatbotdb', host='127.0.0.1'
+            user='root', password='1234', database='chatbotdb2', host='127.0.0.1'
         )
         cursor = cnx.cursor()
 
@@ -25,7 +25,7 @@ class DataBaseDump:
 
     def create_data_dump_ip_address(self):
         cnx = mysql.connector.connect(
-            user='root', password='1234', database='chatbotdb', host='127.0.0.1'
+            user='root', password='1234', database='chatbotdb2', host='127.0.0.1'
         )
         cursor = cnx.cursor()
 
@@ -43,7 +43,7 @@ class DataBaseDump:
 
     def get_query_data(self, sql_query):
         cnx = mysql.connector.connect(
-            user='root', password='1234', database='chatbotdb', host='127.0.0.1'
+            user='root', password='1234', database='chatbotdb2', host='127.0.0.1'
         )
         cursor = cnx.cursor()
 

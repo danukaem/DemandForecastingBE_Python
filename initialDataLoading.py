@@ -1,5 +1,6 @@
 import pickle
 from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
 
 from tensorflow.keras.models import load_model
 
@@ -9,12 +10,11 @@ from flask import json
 class InitialFileLoader:
 
     def getLemmatizer(self):
-        porter = PorterStemmer()
-        # lemmatizer = WordNetLemmatizer()
-        return porter
+        lemmatizer = WordNetLemmatizer()
+        return lemmatizer
 
     def getIntents(self):
-        intents = json.loads(open('intentCombined.json').read())
+        intents = json.loads(open('intent2.json').read())
         return intents
 
     def getWords(self):

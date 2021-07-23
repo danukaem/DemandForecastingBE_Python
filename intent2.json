@@ -1,0 +1,69 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "How are you",
+        "is anyone there?",
+        "Hello",
+        "Hi there",
+        "Hey"
+      ],
+      "responses": [
+        "Hi, how can I help you?"
+      ],
+      "context_set": ""
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye",
+        "Nice chatting to you, bye"
+      ],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Bye! Come back again soon."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "Thank you very much",
+        "That's helpful",
+        "Awesome, thanks",
+        "Thanks for helping me"
+      ],
+      "responses": [
+        "Happy to help!",
+        "My pleasure"
+      ]
+    },
+    {
+      "tag": "payments",
+      "patterns": [
+        "payment method",
+        "Do you take credit cards?",
+        "Do you accept Master card?"
+      ],
+      "responses": [
+        "We accept VISA, Mastercard and AMEX"
+      ]
+    },
+    {
+      "tag": "laptop",
+      "patterns": [
+        "Do you laptops ?",
+        "Do you have HP lap tops",
+        "what brands of laptops are there ?"
+      ],
+      "responses": [
+        "There are HP, DELL, ACER laptops"
+      ]
+    }
+  ]
+}

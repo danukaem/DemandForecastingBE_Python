@@ -17,7 +17,9 @@ CORS(app)
 def clean_up_sentence(sentence):
     ifl = InitialFileLoader()
     sentence_words = nltk.word_tokenize(sentence)
-    sentence_words = [ifl.getLemmatizer().stem(word) for word in sentence_words]
+    sentence_words = [ifl.getLemmatizer().lemmatize(ifl.getLemmatizer().lemmatize(
+        ifl.getLemmatizer().lemmatize(ifl.getLemmatizer().lemmatize(word.strip().lower(), pos='n'), pos='v'), pos='a'),
+        pos='r') for word in sentence_words]
     return sentence_words
 
 
@@ -38,25 +40,33 @@ def predict_class(sentence):
 
     bow = bag_of_words(sentence)
     res = ifl.getModel().predict(np.array([bow]))[0]
-    ERROR_THRESHOLD = 0.25
+    ERROR_THRESHOLD = 0.8
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
 
     results.sort(key=lambda x: x[1], reverse=True)
     return_list = []
     for r in results:
         return_list.append({'intent': ifl.getClasses()[r[0]], 'probability': str(r[1])})
+    print(return_list)
     return return_list
 
 
 def get_response(intent_list, intents_json):
-    tag = intent_list[0]['intent']
+    result = 'I do not understand...'
+    initial_probability = 0.0
+    tag = ''
+
+    for prob in intent_list:
+        if float(prob['probability']) > initial_probability:
+            initial_probability = float(prob['probability'])
+            tag = prob['intent']
+
     list_of_intents = intents_json['intents']
+
     for i in list_of_intents:
         if i['tag'] == tag:
             result = random.choice(i['responses'])
             break
-        else:
-            result = 'error ...'
     return result
 
 
@@ -65,11 +75,8 @@ def get_chat_response():
     ifl = InitialFileLoader()
     query_parameters = request.args
     message = query_parameters.get('message')
-    print(message)
     ints = predict_class(message)
     res = get_response(ints, ifl.getIntents())
-    print(res)
-
     return jsonify({"robotMessage": res})
 
 
@@ -81,14 +88,9 @@ def generate_chat_model():
     data_dump_model.create_data_dump_ip_address()
     res = chat_model.generatechatmodel()
     demand_forecast = DemandForecast()
-    demand_forecast.forecast_demand_model()
-    demand_forecast.forecast_item_category_demand_model()
-    demand_forecast.forecast_item_category_demand_model_without_user_id()
-    demand_forecast.forecast_item_price_demand_model()
-    demand_forecast.forecast_item_discount_demand_model()
-    demand_forecast.forecast_order_quantity_demand_model()
-    demand_forecast.forecast_order_total_amount_demand_model()
-    demand_forecast.forecast_order_status_demand_model()
+    # demand_forecast.forecast_item_category_demand_model()
+    # demand_forecast.forecast_item_category_demand_model_without_user_id()
+
     return res
 
 
@@ -108,10 +110,6 @@ def get_recommend_cart_items():
     else:
         return 'no data'
 
-
-# manually generate chat bot related models
-# demo = ChatBotModel()
-# demo.generatechatmodel()
 
 @app.route('/demandForecasting', methods=['GET'])
 def demand_forecasting():
@@ -205,70 +203,6 @@ def item_discount_demand_forecasting():
     if len(test_x) > 0:
         test_x = np.unique(test_x, axis=0)
         model_saved = keras.models.load_model('forecast_item_discount_demand_model.h5')
-        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
-        return jsonify({"forecastResults": '{}'.format(pred)})
-    else:
-        return 'no data'
-
-
-@app.route('/orderQuantityDemandForecasting', methods=['GET'])
-def order_quantity_demand_forecasting():
-    request_data = request.args
-    ip_address = request_data.get('ipAddress')
-    df = DemandForecast()
-    test_x = df.convert_data_by_ip_address(ip_address)
-
-    if len(test_x) > 0:
-        test_x = np.unique(test_x, axis=0)
-        model_saved = keras.models.load_model('forecast_order_quantity_demand_model.h5')
-        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
-        return jsonify({"forecastResults": '{}'.format(pred)})
-    else:
-        return 'no data'
-
-
-@app.route('/itemPriceDemandForecasting', methods=['GET'])
-def item_price_demand_forecasting():
-    request_data = request.args
-    ip_address = request_data.get('ipAddress')
-    df = DemandForecast()
-    test_x = df.convert_data_by_ip_address(ip_address)
-
-    if len(test_x) > 0:
-        test_x = np.unique(test_x, axis=0)
-        model_saved = keras.models.load_model('forecast_item_price_demand_model.h5')
-        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
-        return jsonify({"forecastResults": '{}'.format(pred)})
-    else:
-        return 'no data'
-
-
-@app.route('/orderTotalDemandForecasting', methods=['GET'])
-def order_total_demand_forecasting():
-    request_data = request.args
-    ip_address = request_data.get('ipAddress')
-    df = DemandForecast()
-    test_x = df.convert_data_by_ip_address(ip_address)
-
-    if len(test_x) > 0:
-        test_x = np.unique(test_x, axis=0)
-        model_saved = keras.models.load_model('forecast_order_total_amount_demand_model.h5')
-        pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
-        return jsonify({"forecastResults": '{}'.format(pred)})
-    else:
-        return 'no data'
-
-
-@app.route('/orderStatusDemandForecasting', methods=['GET'])
-def order_status_demand_forecasting():
-    request_data = request.args
-    ip_address = request_data.get('ipAddress')
-    df = DemandForecast()
-    test_x = df.convert_data_by_ip_address(ip_address)
-
-    if len(test_x) > 0:
-        test_x = np.unique(test_x, axis=0)
-        model_saved = keras.models.load_model('forecast_order_status_demand_model.h5')
         pred = model_saved.predict(test_x.reshape(len(test_x), len(test_x[0])), batch_size=1)
         return jsonify({"forecastResults": '{}'.format(pred)})
     else:
