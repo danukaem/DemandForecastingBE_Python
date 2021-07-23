@@ -81,14 +81,14 @@ def generate_chat_model():
     data_dump_model.create_data_dump_ip_address()
     res = chat_model.generatechatmodel()
     demand_forecast = DemandForecast()
-    # demand_forecast.forecast_demand_model()
+    demand_forecast.forecast_demand_model()
     demand_forecast.forecast_item_category_demand_model()
     demand_forecast.forecast_item_category_demand_model_without_user_id()
-    # demand_forecast.forecast_item_price_demand_model()
-    # demand_forecast.forecast_item_discount_demand_model()
-    # demand_forecast.forecast_order_quantity_demand_model()
-    # demand_forecast.forecast_order_total_amount_demand_model()
-    # demand_forecast.forecast_order_status_demand_model()
+    demand_forecast.forecast_item_price_demand_model()
+    demand_forecast.forecast_item_discount_demand_model()
+    demand_forecast.forecast_order_quantity_demand_model()
+    demand_forecast.forecast_order_total_amount_demand_model()
+    demand_forecast.forecast_order_status_demand_model()
     return res
 
 

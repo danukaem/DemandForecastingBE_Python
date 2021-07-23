@@ -104,10 +104,10 @@ class DemandForecast:
         batch_size = 5
         number_of_epochs = 50
         model = keras.models.Sequential()
-        model.add(keras.layers.Dense(128, activation='relu', input_shape=(len(train_x[0]),)))
+        model.add(keras.layers.Dense(len(train_x[0]), activation='relu', input_shape=(len(train_x[0]),)))
         # model.add(keras.layers.Dense(1024, activation='relu'))
         # model.add(keras.layers.Dense(64, activation='relu'))
-        model.add(keras.layers.Dense(128, activation='relu'))
+        model.add(keras.layers.Dense(len(train_x[0]), activation='relu'))
         model.add(keras.layers.Dense(len(train_y[0]), activation='relu'))
 
         # model.compile(optimizer='adam', loss='mean_squared_error', metrics='accuracy')
