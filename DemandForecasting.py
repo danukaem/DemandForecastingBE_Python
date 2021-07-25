@@ -78,36 +78,6 @@ class DemandForecast:
         # plt.legend()
         # plt.show()
 
-
-    def convert_data_by_ip_address(self, ip_address):
-        ignore_letters = ['?', '!', '.', ',']
-
-        dt = DataBaseDump()
-        fetched_data_message = dt.get_query_data(
-            "select   cm.chat_message  from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id inner join order_details od  on od.order_id= ci.order_detail_id where cm.chat_member=1 and  ci.ip_address='" + ip_address + "'")
-
-        fetched_data = dt.get_query_data(
-            "select cm.chat_member chat_member  from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id inner join order_details od  on od.order_id= ci.order_detail_id where  cm.chat_member=1 and ci.ip_address='" + ip_address + "' ")
-
-        if len(fetched_data_message) > 0 and len(fetched_data) > 0:
-            fetched_data = np.array(fetched_data)
-            words_loaded = pickle.load(open('words.pkl', 'rb'))
-            bag_x = []
-            for chat_row in fetched_data_message:
-                bag = []
-                word_list = nltk.word_tokenize(chat_row[0])
-                word_list = [porter.stem(word) for word in word_list if word not in ignore_letters]
-                word_list = sorted(set(word_list))
-                for word in words_loaded:
-                    bag.append(1) if porter.stem(word.lower()) in word_list else bag.append(0)
-                bag_x.append(bag)
-            bag_x = np.array(bag_x)
-            train_x = np.concatenate([fetched_data, bag_x], axis=1)
-
-            return train_x
-        else:
-            return []
-
     def convert_data_by_ip_address_chat(self, ip_address):
         ignore_letters = ['?', '!', '.', ',']
 
@@ -149,36 +119,6 @@ class DemandForecast:
         fetched_data = dt.get_query_data(
             "select   usr.gender gender,cm.chat_member chat_member ,usr.age age from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
             "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where cm.chat_member=1 and  usr.user_id='" + user_id + "' ")
-
-        if len(fetched_data_message) > 0 and len(fetched_data) > 0:
-            fetched_data = np.array(fetched_data)
-            words_loaded = pickle.load(open('words.pkl', 'rb'))
-            bag_x = []
-            for chat_row in fetched_data_message:
-                bag = []
-                word_list = nltk.word_tokenize(chat_row[0])
-                word_list = [porter.stem(word) for word in word_list if word not in ignore_letters]
-                word_list = sorted(set(word_list))
-                for word in words_loaded:
-                    bag.append(1) if porter.stem(word.lower()) in word_list else bag.append(0)
-                bag_x.append(bag)
-            bag_x = np.array(bag_x)
-            train_x = np.concatenate([fetched_data, bag_x], axis=1)
-
-            return train_x
-        else:
-            return []
-
-    def convert_data_by_user_id_chat(self, user_id):
-        ignore_letters = ['?', '!', '.', ',']
-
-        dt = DataBaseDump()
-        fetched_data_message = dt.get_query_data(
-            "select cm.chat_message from chat_message cm where cm.chat_member=1 and cm.user_id='" + user_id + "' order by cm.chat_id desc limit 1")
-
-        fetched_data = dt.get_query_data(
-            "select   usr.gender gender,cm.chat_member chat_member ,usr.age age from cart_item ci inner join chat_message cm on ci.ip_address =  cm.ip_address inner join item im on ci.item_id = im.item_id "
-            "inner join user usr on usr.user_id=ci.user_id inner join order_details od  on od.order_id= ci.order_detail_id where cm.chat_member=1 and usr.user_id='" + user_id + "'   order by cm.chat_id desc limit 1 ")
 
         if len(fetched_data_message) > 0 and len(fetched_data) > 0:
             fetched_data = np.array(fetched_data)
