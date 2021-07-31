@@ -7,6 +7,7 @@ from flask_cors import CORS
 from DemandForecasting import DemandForecast
 from chatBotModel import ChatBotModel
 from dataBaseDump import DataBaseDump
+from demo6 import Demo6
 from initialDataLoading import InitialFileLoader
 from tensorflow import keras
 
@@ -79,6 +80,26 @@ def get_chat_response():
     return jsonify({"robotMessage": res})
 
 
+@app.route('/getForecastedItems', methods=['GET'])
+def getForecastedItems():
+    d6 = Demo6()
+    # query_parameters = request.args
+    # message = query_parameters.get('message')
+    # ints = predict_class(message)
+    # res = get_response(ints, ifl.getIntents())
+    d6.get_prediction_data()
+    return jsonify({"items": '{}'.format(d6.get_prediction_data())})
+
+@app.route('/getForecastedItemsCodes', methods=['GET'])
+def getForecastedItemsCodes():
+    d6 = Demo6()
+    # query_parameters = request.args
+    # message = query_parameters.get('message')
+    # ints = predict_class(message)
+    # res = get_response(ints, ifl.getIntents())
+    d6.get_columns()
+    return jsonify({"itemCodes": '{}'.format(d6.get_columns())})
+
 @app.route('/generateChatModel', methods=['GET'])
 def generate_chat_model():
     chat_model = ChatBotModel()
@@ -87,7 +108,7 @@ def generate_chat_model():
     data_dump_model.create_data_dump_ip_address()
     res = chat_model.generatechatmodel()
     demand_forecast = DemandForecast()
-    # demand_forecast.forecast_item_category_demand_model()
+    demand_forecast.forecast_item_category_demand_model()
     # demand_forecast.forecast_item_category_demand_model_without_user_id()
 
     return res
