@@ -43,9 +43,10 @@ class DemandForecast:
         model = keras.Sequential()
         model.add(keras.layers.Dense(input_length, activation='relu', input_shape=(input_length,)))
         model.add(keras.layers.Dense(input_length, activation='relu'))
+        model.add(keras.layers.Dense(input_length, activation='softmax'))
         model.add(keras.layers.Dense(output_length))
         model.compile(optimizer='adam', loss='mean_squared_error')
-        hist = model.fit(train_x, train_y, epochs=10, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
+        hist = model.fit(train_x, train_y, epochs=100, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
                          batch_size=1)
         model.save('model1.h5', hist)
         model.summary()
@@ -77,9 +78,10 @@ class DemandForecast:
         model = keras.Sequential()
         model.add(keras.layers.Dense(input_length, activation='relu', input_shape=(input_length,)))
         model.add(keras.layers.Dense(input_length, activation='relu'))
+        model.add(keras.layers.Dense(input_length, activation='softmax'))
         model.add(keras.layers.Dense(output_length))
         model.compile(optimizer='adam', loss='mean_squared_error')
-        hist = model.fit(train_x, train_y, epochs=10, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
+        hist = model.fit(train_x, train_y, epochs=100, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
                          batch_size=1)
         model.save('model2.h5', hist)
         model.summary()

@@ -138,40 +138,46 @@ def getModel2OutPutNames():
     return jsonify({"itemCodes": '{}'.format(df.get_model_2_output_column_names())})
 
 
-@app.route('/getForecastedItemsByUserId', methods=['GET'])
-def getForecastedItemsByUserId():
-    request_data = request.args
-    user_id = request_data.get('userId')
-    df = DemandForecast()
-    test_x = df.get_data_by_user_id(user_id)
-    # train_x = chat[{'age', 'district', 'gender', 'occupation'}]
-    # train_x = train_x.fillna(0)
-    # train_x = pd.get_dummies(train_x)
-    # train_x = np.array(train_x)
-
-    if len(test_x) > 0:
-        # test_x = np.unique(test_x, axis=0)
-        test_x = np.array([30., 0., 1., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 1.,
-                           0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
-        model_saved = keras.models.load_model('model1.h5')
-        pred = model_saved.predict(test_x.reshape(1, len(test_x)), batch_size=1)
-        print(pred)
-        return jsonify({"items": '{}'.format(pred)})
-    else:
-        return 'no data'
+# @app.route('/getForecastedItemsByUserId', methods=['GET'])
+# def getForecastedItemsByUserId():
+#     request_data = request.args
+#     user_id = request_data.get('userId')
+#     df = DemandForecast()
+#     test_x = df.get_data_by_user_id(user_id)
+#     # train_x = chat[{'age', 'district', 'gender', 'occupation'}]
+#     # train_x = train_x.fillna(0)
+#     # train_x = pd.get_dummies(train_x)
+#     # train_x = np.array(train_x)
+#
+#     if len(test_x) > 0:
+#         # test_x = np.unique(test_x, axis=0)
+#         test_x = np.array([30., 0., 1., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 1.,
+#                            0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+#         model_saved = keras.models.load_model('model1.h5')
+#         pred = model_saved.predict(test_x.reshape(1, len(test_x)), batch_size=1)
+#         print(pred)
+#         return jsonify({"items": '{}'.format(pred)})
+#     else:
+#         return 'no data'
 
 
 @app.route('/getForecastedItemsByUserId', methods=['POST'])
-def testList():
+def getForecastedItemsByUserId():
     request_json = request.get_json()
     request_data = request_json['array']
-    print(request_data)
     request_data = np.array(request_data)
-    print(request_data)
-    # model_saved = keras.models.load_model('model1.h5')
     model_saved = keras.models.load_model('model2.h5')
     pred = model_saved.predict(request_data.reshape(1, len(request_data)), batch_size=1)
-    print(pred)
+    return jsonify({"abc": '{}'.format(pred)})
+
+
+@app.route('/getForecastedItemsNewUser', methods=['POST'])
+def getForecastedItemsNewUser():
+    request_json = request.get_json()
+    request_data = request_json['array']
+    request_data = np.array(request_data)
+    model_saved = keras.models.load_model('model1.h5')
+    pred = model_saved.predict(request_data.reshape(1, len(request_data)), batch_size=1)
     return jsonify({"abc": '{}'.format(pred)})
 
 
