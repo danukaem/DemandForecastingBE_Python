@@ -26,13 +26,13 @@ class Demo6:
         train_y = pd.get_dummies(train_y)
         train_x = train_x.fillna(0)
         # print(train_y.head(2))
-        coloumn_names = train_y[0:1].columns
-        coloumn_names = np.array(coloumn_names).astype('object')
-        print(coloumn_names)
-        print(coloumn_names.dtype)
-        a = train_y[0:1]
-        a = np.array(a).astype('int32')
-        print(train_x)
+        # coloumn_names = train_y[0:1].columns
+        # coloumn_names = np.array(coloumn_names).astype('object')
+        # print(coloumn_names)
+        # print(coloumn_names.dtype)
+        # a = train_y[0:1]
+        # a = np.array(a).astype('int32')
+        # print(train_x)
         model = keras.Sequential()
         model.add(keras.layers.Dense(3, activation='relu', input_shape=(3,)))
         model.add(keras.layers.Dense(5, activation='relu'))
@@ -53,6 +53,19 @@ class Demo6:
         train_y = pd.get_dummies(train_y)
         # print(train_y.head(2))
         coloumn_names = train_y[0:1].columns
+        coloumn_names = np.array(coloumn_names).astype('object')
+        col_names = json.dumps(coloumn_names.tolist())
+        print(col_names)
+        return col_names
+
+    def get_model_1_column_names(self):
+        chat = pd.read_csv('model_1.csv')
+        train_x = chat[{'age', 'district', 'gender', 'occupation'}]
+
+        train_y = chat[{'item_code'}]
+        train_x = pd.get_dummies(train_x)
+        # print(train_y.head(2))
+        coloumn_names = train_x[0:1].columns
         coloumn_names = np.array(coloumn_names).astype('object')
         col_names = json.dumps(coloumn_names.tolist())
         print(col_names)
