@@ -3,7 +3,7 @@ import numpy as np
 import nltk
 from nltk.stem import PorterStemmer
 import json
-
+from sklearn.model_selection import train_test_split
 import pandas as pd
 from tensorflow import keras
 
@@ -40,16 +40,38 @@ class DemandForecast:
         # print(input_length)
         # print(output_length)
         # print("-----------------------")
+
+        X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.33)
         model = keras.Sequential()
         model.add(keras.layers.Dense(input_length, activation='relu', input_shape=(input_length,)))
         model.add(keras.layers.Dense(input_length, activation='relu'))
         model.add(keras.layers.Dense(input_length, activation='softmax'))
         model.add(keras.layers.Dense(output_length))
-        model.compile(optimizer='adam', loss='mean_squared_error')
-        hist = model.fit(train_x, train_y, epochs=100, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
+        model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
+        hist = model.fit(train_x, train_y, epochs=500, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
+        # hist = model.fit(X_train, y_train, epochs=100, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
                          batch_size=1)
+        print("accuracy----------------------------------")
+        print(model.evaluate(X_test, y_test))
+        print("accuracy----------------------------------")
         model.save('model1.h5', hist)
         model.summary()
+        # loss_train = hist.history['loss']
+        # accuracy = hist.history['accuracy']
+        # plt.plot(loss_train, 'g', label='loss')
+        # plt.plot(accuracy, 'b', label='accuracy')
+        # plt.title(
+        #     'Training and Validation accuracy of forecast_item_category model (batch size = ' + str(1) + ' and epochs = ' + str(
+        #         500) + ')')
+        #
+        # plt.title(
+        #     'Training and Validation loss of forecast_item_category model (batch size = ' + str(
+        #         1) + ' and epochs = ' + str(
+        #         500) + ')')
+        # plt.xlabel('Epochs')
+        # plt.ylabel('Loss')
+        # plt.legend()
+        # plt.show()
 
     def forecast_item_model2(self):
         chat = pd.read_csv('model_2.csv')
