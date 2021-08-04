@@ -97,16 +97,89 @@ class DemandForecast:
         # print(input_length)
         # print(output_length)
         # print("-----------------------")
+        X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.33)
         model = keras.Sequential()
         model.add(keras.layers.Dense(input_length, activation='relu', input_shape=(input_length,)))
         model.add(keras.layers.Dense(input_length, activation='relu'))
         model.add(keras.layers.Dense(input_length, activation='softmax'))
         model.add(keras.layers.Dense(output_length))
-        model.compile(optimizer='adam', loss='mean_squared_error')
-        hist = model.fit(train_x, train_y, epochs=100, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
+        model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
+        hist = model.fit(train_x, train_y, epochs=500, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
                          batch_size=1)
+        print("accuracy----------------------------------")
+        print(model.evaluate(X_test, y_test))
+        print("accuracy----------------------------------")
         model.save('model2.h5', hist)
         model.summary()
+        # loss_train = hist.history['loss']
+        # accuracy = hist.history['accuracy']
+        # plt.plot(loss_train, 'g', label='loss')
+        # plt.plot(accuracy, 'b', label='accuracy')
+        # plt.title(
+        #     'Training and Validation accuracy of forecast_item_category model (batch size = ' + str(1) + ' and epochs = ' + str(
+        #         500) + ')')
+        #
+        # plt.title(
+        #     'Training and Validation loss of forecast_item_category model (batch size = ' + str(
+        #         1) + ' and epochs = ' + str(
+        #         500) + ')')
+        # plt.xlabel('Epochs')
+        # plt.ylabel('Loss')
+        # plt.legend()
+        # plt.show()
+
+    def get_data_by_user_id(self, user_id):
+        dt = DataBaseDump()
+        user_data = dt.get_query_data(
+            "select age,district,gender,occupation ,user_id from user")
+        print(user_data)
+
+        # user_data = np.array(user_data)
+        user_data = pd.get_dummies(user_data)
+        user_data = user_data.fillna(0)
+        print(user_data)
+
+        return user_data
+
+    def get_model_1_input_column_names(self):
+        chat_model_1 = pd.read_csv('model_1.csv')
+        train_x = chat_model_1[{'age', 'district', 'gender', 'occupation'}]
+        train_x = train_x.fillna(0)
+        train_x = pd.get_dummies(train_x)
+        coloumn_names = train_x[0:1].columns
+        coloumn_names = np.array(coloumn_names).astype('object')
+        col_names = json.dumps(coloumn_names.tolist())
+        return col_names
+
+    def get_model_2_input_column_names(self):
+        chat_model_2 = pd.read_csv('model_2.csv')
+        train_x = chat_model_2[
+            {'age', 'district', 'gender', 'occupation', 'brand', 'color', 'item_category', 'ram', 'price', 'screen'}]
+        train_x = train_x.fillna(0)
+        train_x = pd.get_dummies(train_x)
+        coloumn_names = train_x[0:1].columns
+        coloumn_names = np.array(coloumn_names).astype('object')
+        col_names = json.dumps(coloumn_names.tolist())
+        return col_names
+
+    def get_model_1_output_column_names(self):
+        chat_model_1 = pd.read_csv('model_1.csv')
+        train_y = chat_model_1[{'item_code'}]
+        train_y = pd.get_dummies(train_y)
+        coloumn_names = train_y[0:1].columns
+        coloumn_names = np.array(coloumn_names).astype('object')
+        col_names = json.dumps(coloumn_names.tolist())
+        return col_names
+
+    def get_model_2_output_column_names(self):
+        chat_model_1 = pd.read_csv('model_2.csv')
+        train_y = chat_model_1[{'item_code'}]
+        train_y = pd.get_dummies(train_y)
+        coloumn_names = train_y[0:1].columns
+        coloumn_names = np.array(coloumn_names).astype('object')
+        col_names = json.dumps(coloumn_names.tolist())
+        return col_names
+
 
     # def forecast_item_category_demand_model(self):
     #     ignore_letters = ['?', '!', '.', ',']
@@ -199,55 +272,3 @@ class DemandForecast:
     #         return train_x
     #     else:
     #         return []
-
-    def get_data_by_user_id(self, user_id):
-        dt = DataBaseDump()
-        user_data = dt.get_query_data(
-            "select age,district,gender,occupation ,user_id from user")
-        print(user_data)
-
-        # user_data = np.array(user_data)
-        user_data = pd.get_dummies(user_data)
-        user_data = user_data.fillna(0)
-        print(user_data)
-
-        return user_data
-
-    def get_model_1_input_column_names(self):
-        chat_model_1 = pd.read_csv('model_1.csv')
-        train_x = chat_model_1[{'age', 'district', 'gender', 'occupation'}]
-        train_x = train_x.fillna(0)
-        train_x = pd.get_dummies(train_x)
-        coloumn_names = train_x[0:1].columns
-        coloumn_names = np.array(coloumn_names).astype('object')
-        col_names = json.dumps(coloumn_names.tolist())
-        return col_names
-
-    def get_model_2_input_column_names(self):
-        chat_model_2 = pd.read_csv('model_2.csv')
-        train_x = chat_model_2[
-            {'age', 'district', 'gender', 'occupation', 'brand', 'color', 'item_category', 'ram', 'price', 'screen'}]
-        train_x = train_x.fillna(0)
-        train_x = pd.get_dummies(train_x)
-        coloumn_names = train_x[0:1].columns
-        coloumn_names = np.array(coloumn_names).astype('object')
-        col_names = json.dumps(coloumn_names.tolist())
-        return col_names
-
-    def get_model_1_output_column_names(self):
-        chat_model_1 = pd.read_csv('model_1.csv')
-        train_y = chat_model_1[{'item_code'}]
-        train_y = pd.get_dummies(train_y)
-        coloumn_names = train_y[0:1].columns
-        coloumn_names = np.array(coloumn_names).astype('object')
-        col_names = json.dumps(coloumn_names.tolist())
-        return col_names
-
-    def get_model_2_output_column_names(self):
-        chat_model_1 = pd.read_csv('model_2.csv')
-        train_y = chat_model_1[{'item_code'}]
-        train_y = pd.get_dummies(train_y)
-        coloumn_names = train_y[0:1].columns
-        coloumn_names = np.array(coloumn_names).astype('object')
-        col_names = json.dumps(coloumn_names.tolist())
-        return col_names
