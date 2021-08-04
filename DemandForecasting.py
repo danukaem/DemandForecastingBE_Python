@@ -49,7 +49,7 @@ class DemandForecast:
         model.add(keras.layers.Dense(output_length))
         model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
         hist = model.fit(train_x, train_y, epochs=500, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
-        # hist = model.fit(X_train, y_train, epochs=100, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
+                         # hist = model.fit(X_train, y_train, epochs=100, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
                          batch_size=1)
         print("accuracy----------------------------------")
         print(model.evaluate(X_test, y_test))
@@ -76,7 +76,8 @@ class DemandForecast:
     def forecast_item_model2(self):
         chat = pd.read_csv('model_2.csv')
         train_x = chat[
-            {'age', 'district', 'gender', 'occupation', 'brand', 'color', 'item_category', 'ram', 'price', 'screen'}]
+            {'age', 'district', 'gender', 'occupation', 'brand', 'color', 'item_category', 'ram', 'price', 'screen',
+             'processor'}]
         train_x = train_x.fillna(0)
         train_x = pd.get_dummies(train_x)
         print(train_x.columns)
@@ -154,7 +155,8 @@ class DemandForecast:
     def get_model_2_input_column_names(self):
         chat_model_2 = pd.read_csv('model_2.csv')
         train_x = chat_model_2[
-            {'age', 'district', 'gender', 'occupation', 'brand', 'color', 'item_category', 'ram', 'price', 'screen'}]
+            {'age', 'district', 'gender', 'occupation', 'brand', 'color', 'item_category', 'ram', 'price', 'screen',
+             'processor'}]
         train_x = train_x.fillna(0)
         train_x = pd.get_dummies(train_x)
         coloumn_names = train_x[0:1].columns
@@ -179,7 +181,6 @@ class DemandForecast:
         coloumn_names = np.array(coloumn_names).astype('object')
         col_names = json.dumps(coloumn_names.tolist())
         return col_names
-
 
     # def forecast_item_category_demand_model(self):
     #     ignore_letters = ['?', '!', '.', ',']

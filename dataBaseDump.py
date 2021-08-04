@@ -28,14 +28,14 @@ class DataBaseDump:
         cursor = cnx.cursor()
 
         query = (
-            "select age,gender,occupation,district,brand,color,item_category,ram,price,screen,itm_ordr.item_code from item_extract_rasa ier INNER JOIN `user` ur on ur.user_id = ier.user_id LEFT JOIN order_details od on ier.session_id = od.session_id  LEFT JOIN (select ord.order_id order_id ,ord.session_id  session_id,ord.state_of_order state_of_order ,im.item_id item_id , im.item_code from order_details ord INNER JOIN cart_item ci on  ord.order_id = ci.order_detail_id INNER JOIN item im on ci.item_id = im.item_id) itm_ordr on itm_ordr.session_id = ier.session_id where itm_ordr.state_of_order = 0  "
+            "select age,gender,occupation,district,brand,color,item_category,ram,price,screen,processor,itm_ordr.item_code from item_extract_rasa ier INNER JOIN `user` ur on ur.user_id = ier.user_id LEFT JOIN order_details od on ier.session_id = od.session_id  LEFT JOIN (select ord.order_id order_id ,ord.session_id  session_id,ord.state_of_order state_of_order ,im.item_id item_id , im.item_code from order_details ord INNER JOIN cart_item ci on  ord.order_id = ci.order_detail_id INNER JOIN item im on ci.item_id = im.item_id) itm_ordr on itm_ordr.session_id = ier.session_id where itm_ordr.state_of_order = 0  "
         )
 
         cursor.execute(query)
         res = cursor.fetchall()
         csv_doc = pd.DataFrame(res,
                                columns=['age', 'gender', 'occupation', 'district', 'brand', 'color', 'item_category',
-                                        'ram', 'price', 'screen', 'item_code'])
+                                        'ram', 'price', 'screen', 'processor', 'item_code'])
         csv_doc.to_csv('model_2.csv')
         cursor.close()
         cnx.close()
