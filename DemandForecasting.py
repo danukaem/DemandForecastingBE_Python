@@ -20,56 +20,50 @@ class DemandForecast:
     def forecast_item_model1(self):
         chat = pd.read_csv('model_1.csv')
         train_x = chat[{'age', 'district', 'gender', 'occupation'}]
-        # print(train_x.columns)
         train_x = train_x.fillna(0)
         train_x = pd.get_dummies(train_x)
-        # print(train_x.columns)
         train_x = np.array(train_x)
-        # print(train_x)
         train_y = chat[{'item_code'}]
         train_y = train_y.fillna(0)
         train_y = pd.get_dummies(train_y)
         train_y = np.array(train_y)
-        # print(train_y)
-
         input_length = len(train_x[0:1][0])
         output_length = len(train_y[0:1][0])
-        # print("-----------------------")
-        # print(train_x[0:1])
-        # print(train_y[0:1])
-        # print(input_length)
-        # print(output_length)
-        # print("-----------------------")
-
-        X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.33)
+        X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.30)
+        batch_size = 1
+        epochs = 500
         model = keras.Sequential()
         model.add(keras.layers.Dense(input_length, activation='relu', input_shape=(input_length,)))
         model.add(keras.layers.Dense(input_length, activation='relu'))
         model.add(keras.layers.Dense(input_length, activation='softmax'))
         model.add(keras.layers.Dense(output_length))
         model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
-        hist = model.fit(train_x, train_y, epochs=500, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
+        hist = model.fit(train_x, train_y, epochs=epochs, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
                          # hist = model.fit(X_train, y_train, epochs=100, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
-                         batch_size=1)
+                         batch_size=batch_size)
         print("accuracy----------------------------------")
-        print(model.evaluate(X_test, y_test))
+        print(model.evaluate(X_test, y_test)[0])
+        print(model.evaluate(X_test, y_test)[1])
         print("accuracy----------------------------------")
         model.save('model1.h5', hist)
         model.summary()
-        # loss_train = hist.history['loss']
         # accuracy = hist.history['accuracy']
-        # plt.plot(loss_train, 'g', label='loss')
         # plt.plot(accuracy, 'b', label='accuracy')
         # plt.title(
-        #     'Training and Validation accuracy of forecast_item_category model (batch size = ' + str(1) + ' and epochs = ' + str(
-        #         500) + ')')
-        #
-        # plt.title(
-        #     'Training and Validation loss of forecast_item_category model (batch size = ' + str(
-        #         1) + ' and epochs = ' + str(
-        #         500) + ')')
+        #     'Training and Validation accuracy of item forecast model 1 (batch size = ' + str(
+        #         batch_size) + ' and epochs = ' + str(
+        #         epochs) + ') and model accuracy is ' + str(model.evaluate(X_test, y_test)[1] * 100) + '%')
+
         # plt.xlabel('Epochs')
+        # plt.ylabel('Accuracy')
         # plt.ylabel('Loss')
+        # loss_train = hist.history['loss']
+        # plt.plot(loss_train, 'g', label='loss')
+        # plt.title(
+        #     'Training and Validation loss of item forecast model 1 (batch size = ' + str(
+        #         batch_size) + ' and epochs = ' + str(
+        #         epochs) + ') and loss of the model is ' + str(model.evaluate(X_test, y_test)[0]))
+
         # plt.legend()
         # plt.show()
 
@@ -88,44 +82,41 @@ class DemandForecast:
         train_y = train_y.fillna(0)
         train_y = pd.get_dummies(train_y)
         train_y = np.array(train_y)
-        # print(train_y)
-
         input_length = len(train_x[0:1][0])
         output_length = len(train_y[0:1][0])
-        # print("-----------------------")
-        # print(train_x[0:1])
-        # print(train_y[0:1])
-        # print(input_length)
-        # print(output_length)
-        # print("-----------------------")
-        X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.33)
+        X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.30)
+        batch_size = 100
+        epochs = 200
         model = keras.Sequential()
         model.add(keras.layers.Dense(input_length, activation='relu', input_shape=(input_length,)))
         model.add(keras.layers.Dense(input_length, activation='relu'))
         model.add(keras.layers.Dense(input_length, activation='softmax'))
         model.add(keras.layers.Dense(output_length))
         model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
-        hist = model.fit(train_x, train_y, epochs=500, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
-                         batch_size=1)
+        hist = model.fit(train_x, train_y, epochs=epochs, callbacks=[keras.callbacks.EarlyStopping(patience=1)],
+                         batch_size=batch_size)
         print("accuracy----------------------------------")
         print(model.evaluate(X_test, y_test))
         print("accuracy----------------------------------")
         model.save('model2.h5', hist)
         model.summary()
-        # loss_train = hist.history['loss']
         # accuracy = hist.history['accuracy']
-        # plt.plot(loss_train, 'g', label='loss')
         # plt.plot(accuracy, 'b', label='accuracy')
         # plt.title(
-        #     'Training and Validation accuracy of forecast_item_category model (batch size = ' + str(1) + ' and epochs = ' + str(
-        #         500) + ')')
-        #
-        # plt.title(
-        #     'Training and Validation loss of forecast_item_category model (batch size = ' + str(
-        #         1) + ' and epochs = ' + str(
-        #         500) + ')')
+        #     'Training and Validation accuracy of item forecast model 2 (batch size = ' + str(
+        #         batch_size) + ' and epochs = ' + str(
+        #         epochs) + ') and model accuracy is ' + str(model.evaluate(X_test, y_test)[1] * 100) + '%')
+
         # plt.xlabel('Epochs')
+        # plt.ylabel('Accuracy')
         # plt.ylabel('Loss')
+        # loss_train = hist.history['loss']
+        # plt.plot(loss_train, 'g', label='loss')
+        # plt.title(
+        #     'Training and Validation loss of item forecast model 2 (batch size = ' + str(
+        #         batch_size) + ' and epochs = ' + str(
+        #         epochs) + ') and loss of the model is ' + str(model.evaluate(X_test, y_test)[0]))
+
         # plt.legend()
         # plt.show()
 
