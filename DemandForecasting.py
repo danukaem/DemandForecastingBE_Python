@@ -30,11 +30,11 @@ class DemandForecast:
         input_length = len(train_x[0:1][0])
         output_length = len(train_y[0:1][0])
         X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.30)
-        batch_size = 1
-        epochs = 500
+        batch_size = 5
+        epochs = 100
         model = keras.Sequential()
         model.add(keras.layers.Dense(input_length, activation='relu', input_shape=(input_length,)))
-        model.add(keras.layers.Dense(input_length, activation='relu'))
+        # model.add(keras.layers.Dense(input_length, activation='relu'))
         model.add(keras.layers.Dense(input_length, activation='softmax'))
         model.add(keras.layers.Dense(output_length))
         model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
@@ -85,11 +85,11 @@ class DemandForecast:
         input_length = len(train_x[0:1][0])
         output_length = len(train_y[0:1][0])
         X_train, X_test, y_train, y_test = train_test_split(train_x, train_y, test_size=0.30)
-        batch_size = 100
-        epochs = 200
+        batch_size = 5
+        epochs = 100
         model = keras.Sequential()
         model.add(keras.layers.Dense(input_length, activation='relu', input_shape=(input_length,)))
-        model.add(keras.layers.Dense(input_length, activation='relu'))
+        # model.add(keras.layers.Dense(input_length, activation='relu'))
         model.add(keras.layers.Dense(input_length, activation='softmax'))
         model.add(keras.layers.Dense(output_length))
         model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
